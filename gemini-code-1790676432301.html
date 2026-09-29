@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IGBS Badminton Tournament 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .bg-court { background-color: #006400; }
+        .text-court { color: #006400; }
+        .border-court { border-color: #006400; }
+        .card-selected { background-color: #006400; color: white; border-color: #006400; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <!-- Header Section -->
+    <header class="bg-court text-white pt-8 pb-12 px-4 shadow-md relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/diagonal-stripes.png')]"></div>
+        <div class="max-w-3xl mx-auto relative z-10 flex flex-col items-center text-center">
+            <h4 class="text-sm uppercase tracking-widest font-semibold mb-2" data-bn="IGBS e.V. আয়োজিত" data-en="Organized by IGBS e.V.">IGBS e.V. আয়োজিত</h4>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4" data-bn="IGBS ব্যাডমিন্টন টুর্নামেন্ট ২০২৬ 🏸" data-en="IGBS Badminton Tournament 2026 🏸">IGBS ব্যাডমিন্টন টুর্নামেন্ট ২০২৬ 🏸</h1>
+            
+            <div class="flex space-x-4 mt-4">
+                <button onclick="setLanguage('bn')" id="btn-bn" class="px-4 py-1 rounded-full bg-white text-court font-bold text-sm shadow-sm transition">বাংলা</button>
+                <button onclick="setLanguage('en')" id="btn-en" class="px-4 py-1 rounded-full bg-transparent border border-white text-white font-bold text-sm hover:bg-white hover:text-court transition">English</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Form Container -->
+    <main class="max-w-3xl mx-auto -mt-6 bg-white rounded-xl shadow-xl p-6 md:p-10 relative z-20 mb-12 border-t-4 border-white">
+        
+        <!-- Event Details -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8 bg-gray-100 p-4 rounded-lg text-sm">
+            <div>
+                <p><strong>📅 <span data-bn="তারিখ:" data-en="Date:">তারিখ:</span></strong> <span data-bn="২২ নভেম্বর ২০২৬" data-en="22 November 2026">২২ নভেম্বর ২০২৬</span></p>
+                <p><strong>🕒 <span data-bn="সময়:" data-en="Time:">সময়:</span></strong> <span data-bn="বিকেল ৪ টা" data-en="4:00 PM">বিকেল ৪ টা</span></p>
+                <p><strong>📍 <span data-bn="স্থান:" data-en="Venue:">স্থান:</span></strong> Billwerder Billdeich 607, 21033 Hamburg</p>
+            </div>
+            <div>
+                <p><strong>💸 <span data-bn="এন্ট্রি ফি:" data-en="Entry Fee:">এন্ট্রি ফি:</span></strong> 15€</p>
+                <p><strong>⏳ <span data-bn="রেজিস্ট্রেশনের শেষ সময়:" data-en="Registration Deadline:">রেজিস্ট্রেশনের শেষ সময়:</span></strong> 02.11.2026</p>
+                <p><strong>📞 <span data-bn="যোগাযোগ:" data-en="Contact:">যোগাযোগ:</span></strong> ওয়াসিম সাজ্জাদ (017632383640)</p>
+            </div>
+        </div>
+
+        <!-- Info / Intro -->
+        <div class="mb-8 text-gray-600 text-sm border-l-4 border-court pl-4">
+            <p data-bn="নতুন আন্তর্জাতিক নিয়ম অনুযায়ী, এবার আমরা ১৫-পয়েন্টের নিয়ম মেনে খেলব। টুর্নামেন্ট শুধুমাত্র হামবুর্গে বসবাসরত বা অতীতে হামবুর্গে বসবাস করেছেন এমন বাংলাদেশিদের জন্য।" data-en="According to the new rules, matches will be played in a 15-point system. Only Bangladeshis currently or previously living in Hamburg are eligible to participate.">নতুন আন্তর্জাতিক নিয়ম অনুযায়ী, এবার আমরা ১৫-পয়েন্টের নিয়ম মেনে খেলব। টুর্নামেন্ট শুধুমাত্র হামবুর্গে বসবাসরত বা অতীতে হামবুর্গে বসবাস করেছেন এমন বাংলাদেশিদের জন্য।</p>
+        </div>
+
+        <form id="registrationForm" onsubmit="submitForm(event)" class="space-y-8">
+            
+            <!-- Step 1: Details -->
+            <div>
+                <h3 class="text-xl font-bold mb-4 border-b pb-2 text-court" data-bn="১. আপনার তথ্য" data-en="1. Your Details">১. আপনার তথ্য</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-sm font-semibold mb-1" data-bn="পুরো নাম *" data-en="Full Name *">পুরো নাম *</label>
+                        <input type="text" id="fullName" required class="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-green-700">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-1" data-bn="মোবাইল নম্বর *" data-en="Mobile Number *">মোবাইল নম্বর *</label>
+                        <input type="tel" id="mobile" required class="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-green-700">
+                    </div>
+                </div>
+                <label class="flex items-start space-x-2">
+                    <input type="checkbox" id="hamburgEligibility" required class="mt-1">
+                    <span class="text-sm text-gray-700" data-bn="আমি নিশ্চিত করছি যে আমি হামবুর্গে বসবাস করি বা অতীতে করেছি। *" data-en="I confirm that I currently live or have lived in Hamburg. *">আমি নিশ্চিত করছি যে আমি হামবুর্গে বসবাস করি বা অতীতে করেছি। *</span>
+                </label>
+            </div>
+
+            <!-- Step 2: Skill Group -->
+            <div>
+                <h3 class="text-xl font-bold mb-2 border-b pb-2 text-court" data-bn="২. আপনার খেলার স্তর" data-en="2. Your Playing Level">২. আপনার খেলার স্তর</h3>
+                <p class="text-xs text-red-500 mb-4 font-semibold" data-bn="সতর্কতা: আপনি যদি নিজের অবস্থান বা মান কমিয়ে নেন, তবে আপনার দলকে প্রত্যাহার করার অধিকার কমিটির রয়েছে।" data-en="Warning: If you purposely select a lower standard, the committee reserves the right to withdraw your team.">সতর্কতা: আপনি যদি নিজের অবস্থান বা মান কমিয়ে নেন, তবে আপনার দলকে প্রত্যাহার করার অধিকার কমিটির রয়েছে।</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="group-card border-2 rounded-lg p-4 cursor-pointer hover:border-court transition" onclick="selectGroup('A')">
+                        <input type="radio" name="skillGroup" value="A" id="groupA" class="hidden" required>
+                        <h4 class="font-bold text-lg" data-bn="এ গ্রুপ" data-en="Group A">এ গ্রুপ</h4>
+                        <p class="text-xs mt-1" data-bn="এক্সপার্ট ও অভিজ্ঞ" data-en="Expert and Experienced">এক্সপার্ট ও অভিজ্ঞ</p>
+                    </div>
+                    <div class="group-card border-2 rounded-lg p-4 cursor-pointer hover:border-court transition" onclick="selectGroup('B')">
+                        <input type="radio" name="skillGroup" value="B" id="groupB" class="hidden">
+                        <h4 class="font-bold text-lg" data-bn="বি গ্রুপ" data-en="Group B">বি গ্রুপ</h4>
+                        <p class="text-xs mt-1" data-bn="অভিজ্ঞ ইন্টারমিডিয়েট" data-en="Experienced Intermediate">অভিজ্ঞ ইন্টারমিডিয়েট</p>
+                    </div>
+                    <div class="group-card border-2 rounded-lg p-4 cursor-pointer hover:border-court transition" onclick="selectGroup('C')">
+                        <input type="radio" name="skillGroup" value="C" id="groupC" class="hidden">
+                        <h4 class="font-bold text-lg" data-bn="সি গ্রুপ" data-en="Group C">সি গ্রুপ</h4>
+                        <p class="text-xs mt-1" data-bn="বেসিক / উন্নয়নশীল" data-en="Developing / Basic match experience">বেসিক / উন্নয়নশীল</p>
+                    </div>
+                    <div class="group-card border-2 rounded-lg p-4 cursor-pointer hover:border-court transition" onclick="selectGroup('D')">
+                        <input type="radio" name="skillGroup" value="D" id="groupD" class="hidden">
+                        <h4 class="font-bold text-lg" data-bn="ডি গ্রুপ" data-en="Group D">ডি গ্রুপ</h4>
+                        <p class="text-xs mt-1" data-bn="নতুন বা বিগিনার" data-en="New or Beginner">নতুন বা বিগিনার</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Partner -->
+            <div>
+                <h3 class="text-xl font-bold mb-4 border-b pb-2 text-court" data-bn="পছন্দের পার্টনার (ঐচ্ছিক)" data-en="Preferred Partner (Optional)">পছন্দের পার্টনার (ঐচ্ছিক)</h3>
+                <label class="block text-sm font-semibold mb-1" data-bn="পার্টনারের নাম" data-en="Partner's Name">পার্টনারের নাম</label>
+                <input type="text" id="partner" class="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-green-700">
+                <p class="text-xs text-gray-500 mt-1" data-bn="আপনার অনুরোধ বিবেচনা করা হবে, তবে পছন্দের পার্টনার পাওয়ার কোনো নিশ্চয়তা নেই।" data-en="Your request will be considered, but there is no guarantee of getting your preferred partner.">আপনার অনুরোধ বিবেচনা করা হবে, তবে পছন্দের পার্টনার পাওয়ার কোনো নিশ্চয়তা নেই।</p>
+            </div>
+
+            <!-- Step 3: Payment -->
+            <div>
+                <h3 class="text-xl font-bold mb-4 border-b pb-2 text-court" data-bn="৩. এন্ট্রি ফি (১৫€)" data-en="3. Entry Fee (15€)">৩. এন্ট্রি ফি (১৫€)</h3>
+                
+                <div class="bg-gray-50 p-4 rounded-lg border mb-4">
+                    <p class="font-semibold mb-2" data-bn="পেমেন্ট অপশন:" data-en="Payment Options:">পেমেন্ট অপশন:</p>
+                    <a href="https://www.paypal.me/mtokons?locale.x=en_DE" target="_blank" class="inline-block bg-blue-600 text-white px-4 py-2 rounded font-bold mb-4 hover:bg-blue-700">Pay with PayPal</a>
+                    
+                    <p class="font-semibold text-sm mt-2">Bank Details:</p>
+                    <ul class="text-sm font-mono text-gray-700">
+                        <li>Account Name: IGBS e.V.</li>
+                        <li>IBAN: DE22100100100013160146</li>
+                    </ul>
+                </div>
+
+                <label class="block text-sm font-semibold mb-2" data-bn="আপনি কি এন্ট্রি ফি পরিশোধ করেছেন? *" data-en="Have you paid the entry fee? *">আপনি কি এন্ট্রি ফি পরিশোধ করেছেন? *</label>
+                <select id="paymentStatus" required class="w-full border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-green-700">
+                    <option value="" disabled selected data-bn="নির্বাচন করুন..." data-en="Select...">নির্বাচন করুন...</option>
+                    <option value="PayPal" data-bn="হ্যাঁ, পেপ্যালের মাধ্যমে" data-en="Yes, via PayPal">হ্যাঁ, পেপ্যালের মাধ্যমে</option>
+                    <option value="Bank" data-bn="হ্যাঁ, ব্যাংকের মাধ্যমে" data-en="Yes, via Bank Transfer">হ্যাঁ, ব্যাংকের মাধ্যমে</option>
+                    <option value="Not Yet" data-bn="না, এখনো করিনি" data-en="No, not yet">না, এখনো করিনি</option>
+                </select>
+            </div>
+
+            <!-- Step 4: Consent -->
+            <div>
+                <h3 class="text-xl font-bold mb-4 border-b pb-2 text-court" data-bn="৪. সম্মতি" data-en="4. Consent">৪. সম্মতি</h3>
+                <label class="flex items-start space-x-2">
+                    <input type="checkbox" id="consent" required class="mt-1">
+                    <span class="text-sm text-gray-700" data-bn="আমি টুর্নামেন্টের দিন উপস্থিত থাকব এবং ইনডোর সুবিধার জন্য পরিষ্কার জুতা নিয়ে আসব। এই টুর্নামেন্টের আয়োজনের জন্য IGBS e.V. আমার ব্যক্তিগত তথ্য ব্যবহার করতে পারে। *" data-en="I will attend on tournament day, bring clean shoes for the indoor facility, and follow indoor rules. I consent to IGBS e.V. using my data for organizing this event. *">আমি টুর্নামেন্টের দিন উপস্থিত থাকব এবং ইনডোর সুবিধার জন্য পরিষ্কার জুতা নিয়ে আসব। এই টুর্নামেন্টের আয়োজনের জন্য IGBS e.V. আমার ব্যক্তিগত তথ্য ব্যবহার করতে পারে। *</span>
+                </label>
+            </div>
+
+            <button type="submit" class="w-full bg-court text-white font-bold text-lg py-3 rounded-lg shadow hover:bg-green-800 transition" data-bn="নিবন্ধন জমা দিন" data-en="Submit Registration">নিবন্ধন জমা দিন</button>
+        </form>
+    </main>
+
+    <script>
+        // Language Toggle Logic
+        let currentLang = 'bn';
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-bn]').forEach(el => {
+                if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = el.getAttribute(`data-${lang}`);
+                } else {
+                    el.innerText = el.getAttribute(`data-${lang}`);
+                }
+            });
+            
+            // Toggle Button Styles
+            if(lang === 'bn') {
+                document.getElementById('btn-bn').className = 'px-4 py-1 rounded-full bg-white text-court font-bold text-sm shadow-sm transition';
+                document.getElementById('btn-en').className = 'px-4 py-1 rounded-full bg-transparent border border-white text-white font-bold text-sm hover:bg-white hover:text-court transition';
+            } else {
+                document.getElementById('btn-en').className = 'px-4 py-1 rounded-full bg-white text-court font-bold text-sm shadow-sm transition';
+                document.getElementById('btn-bn').className = 'px-4 py-1 rounded-full bg-transparent border border-white text-white font-bold text-sm hover:bg-white hover:text-court transition';
+            }
+        }
+
+        // Group Selection UI Logic
+        function selectGroup(group) {
+            document.querySelectorAll('input[name="skillGroup"]').forEach(el => el.checked = false);
+            document.getElementById('group' + group).checked = true;
+            
+            document.querySelectorAll('.group-card').forEach(card => {
+                card.classList.remove('card-selected');
+            });
+            document.getElementById('group' + group).parentElement.classList.add('card-selected');
+        }
+
+        // Form Submission Logic
+        function submitForm(event) {
+            event.preventDefault();
+            
+            const data = {
+                timestamp: new Date().toISOString(),
+                name: document.getElementById('fullName').value,
+                mobile: document.getElementById('mobile').value,
+                hamburgEligibility: document.getElementById('hamburgEligibility').checked ? 'Yes' : 'No',
+                group: document.querySelector('input[name="skillGroup"]:checked').value,
+                partner: document.getElementById('partner').value || 'None',
+                paymentStatus: document.getElementById('paymentStatus').value,
+                paymentVerified: 'Pending',
+                consent: document.getElementById('consent').checked ? 'Yes' : 'No'
+            };
+
+            // NOTE: To make this submit to your Google Sheet, you will replace this alert with a fetch() call to a Google Apps Script Web App URL.
+            alert(currentLang === 'bn' ? 
+                'ধন্যবাদ! আপনার নিবন্ধন সফলভাবে গ্রহণ করা হয়েছে।' : 
+                'Thank you! Your registration has been successfully received.');
+            
+            // Reset form
+            document.getElementById('registrationForm').reset();
+            document.querySelectorAll('.group-card').forEach(card => card.classList.remove('card-selected'));
+        }
+
+        // Initialize default language
+        setLanguage('bn');
+    </script>
+</body>
+</html>
