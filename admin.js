@@ -1,4 +1,4 @@
-/* Admin page: sign in, then enter live and final scores. Every tap saves straight to the database. */
+/* Admin page: sign in, then enter the final points of each finished match. */
 (function () {
   "use strict";
   const api = window.IGBS;
@@ -8,6 +8,7 @@
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const LABELS = { posOf: (g, p) => `${g} place ${p}`, winnerOf: (id) => `Winner of ${id}` };
   const PLAYSLOTS = api.SLOTS.map((s, i) => ({ s, i })).filter((x) => x.s.matches.length);
+  const RESULTS_DRAFT = {};
   const state = { user: null, slot: null, notes: {}, confirm: {} };
 
   const side = (m, k) => {
@@ -59,27 +60,24 @@
   function matchCard(m) {
     const A = side(m, "a"), B = side(m, "b"), r = api.result(m.id);
     const ready = A.known && B.known;
-    const st = r ? r.status : "none";
+    const done = !!r;
     const note = state.notes[m.id];
     const tag = m.stage === "G" ? m.group : `${{ QF: "Quarterfinal", SF: "Semifinal", F: "Final" }[m.stage]}, Level ${m.level}`;
     const row = (S, k) => `
       <div class="side-row ${S.known ? "" : "tbd"}">
         <div class="nm">${esc(S.name)}${S.known ? `<small>${S.code}  ${esc(S.players)}</small>` : ""}</div>
         <div class="score-ctl">
-          <button type="button" data-act="dec" data-k="${k}" aria-label="One point less for ${esc(S.name)}" ${ready && r ? "" : "disabled"}>−</button>
-          <input type="number" inputmode="numeric" min="0" max="99" data-act="set" data-k="${k}" aria-label="Points for ${esc(S.name)}" value="${r ? r[k] : ""}" placeholder="0" ${ready ? "" : "disabled"}>
-          <button type="button" class="plus" data-act="inc" data-k="${k}" aria-label="One point more for ${esc(S.name)}" ${ready ? "" : "disabled"}>+</button>
+          <input type="number" inputmode="numeric" min="0" max="99" data-k="${k}" aria-label="Points for ${esc(S.name)}" value="${RESULTS_DRAFT[m.id] ? RESULTS_DRAFT[m.id][k] : done ? r[k] : ""}" placeholder="0" ${ready ? "" : "disabled"}>
         </div>
       </div>`;
     return `
-      <article class="m ${st === "live" ? "live" : st === "done" ? "done" : ""}" data-id="${m.id}">
+      <article class="m ${done ? "done" : ""}" data-id="${m.id}">
         <div class="m-head"><span class="court">Court ${m.court}</span><span class="id">${m.id}  ${esc(tag)}</span>
-          <span class="state">${st === "live" ? "Live" : st === "done" ? "Final" : "Not started"}</span></div>
+          <span class="state">${done ? "Saved" : "No result"}</span></div>
         ${row(A, "a")}${row(B, "b")}
         ${ready ? `<div class="m-actions">
-          <button type="button" data-act="live" ${st === "live" ? "disabled" : ""}>${st === "done" ? "Reopen as live" : "Start match"}</button>
-          <button type="button" class="final" data-act="final" ${st === "done" ? "disabled" : ""}>Final result</button>
-          <button type="button" class="clear" data-act="clear" ${r ? "" : "disabled"}>Clear</button>
+          <button type="button" class="final" data-act="save">${done ? "Update result" : "Save result"}</button>
+          <button type="button" class="clear" data-act="clear" ${done ? "" : "disabled"}>Clear</button>
           ${note ? `<p class="m-note ${note.kind}" role="status">${esc(note.text)}</p>` : ""}
         </div>` : `<p class="tbd-note">Waiting for the teams to be decided.</p>`}
       </article>`;
@@ -95,7 +93,7 @@
         <button type="button" class="step" data-nav="1" aria-label="Later time" ${state.slot === PLAYSLOTS.length - 1 ? "disabled" : ""}><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
       </div>
       ${[...cur.s.matches].sort((a, b) => a.court - b.court).map(matchCard).join("")}
-      <p class="help">Tap + for each point and the public site updates within a second or two. Press Final result when the match is over. Standings and knockout line-ups fill in by themselves.</p>`;
+      <p class="help">Enter both teams' points when a match is over and press Save result. The public site updates within a second or two. Standings and knockout line-ups fill in by themselves.</p>`;
   }
 
   /* ---------- saving ---------- */
@@ -131,37 +129,27 @@
     const btn = e.target.closest("button[data-act]");
     if (!btn) return;
     const card = btn.closest(".m"); if (!card) return;
-    const id = card.dataset.id, act = btn.dataset.act, k = btn.dataset.k;
-    const r = api.result(id) || { a: 0, b: 0, status: "live" };
+    const id = card.dataset.id, act = btn.dataset.act;
     delete state.notes[id];
-    if (act === "inc" || act === "dec") {
-      const next = { a: r.a, b: r.b }; next[k] = Math.max(0, next[k] + (act === "inc" ? 1 : -1));
-      delete state.confirm[id];
-      await save(id, next.a, next.b, r.status === "done" ? "done" : "live");
-    } else if (act === "live") {
-      await save(id, r.a, r.b, "live");
-    } else if (act === "final") {
-      if (!validFinal(r.a, r.b) && !state.confirm[id]) {
-        state.confirm[id] = true;
-        note(id, "err", `${r.a} : ${r.b} is not a normal finish (15 points, 2 clear). Tap Final result again to save it anyway.`);
-        showAdmin(); return;
+    if (act === "save") {
+      const [ia, ib] = card.querySelectorAll("input");
+      if (ia.value === "" || ib.value === "") { note(id, "err", "Enter the points for both sides."); showAdmin(); return; }
+      const a = Math.max(0, Math.min(99, parseInt(ia.value, 10))), b = Math.max(0, Math.min(99, parseInt(ib.value, 10)));
+      if (a === b) { note(id, "err", "A match cannot end level. Check the points."); showAdmin(); return; }
+      if (!validFinal(a, b) && state.confirm[id] !== `${a}:${b}`) {
+        state.confirm[id] = `${a}:${b}`;
+        note(id, "err", `${a} : ${b} is not a normal finish (15 points, 2 clear). Tap Save again to keep it anyway.`);
+        RESULTS_DRAFT[id] = { a, b }; showAdmin(); return;
       }
-      delete state.confirm[id];
-      await save(id, r.a, r.b, "done");
+      delete state.confirm[id]; delete RESULTS_DRAFT[id];
+      await save(id, a, b, "done");
     } else if (act === "clear") {
       await clearResult(id);
     }
   });
 
-  app.addEventListener("change", async (e) => {
-    if (e.target.id === "slot-pick") { state.slot = Number(e.target.value); showAdmin(); return; }
-    const inp = e.target.closest("input[data-act='set']"); if (!inp) return;
-    const id = inp.closest(".m").dataset.id, k = inp.dataset.k;
-    const r = api.result(id) || { a: 0, b: 0, status: "live" };
-    const v = Math.max(0, Math.min(99, parseInt(inp.value, 10) || 0));
-    const next = { a: r.a, b: r.b }; next[k] = v;
-    delete state.notes[id]; delete state.confirm[id];
-    await save(id, next.a, next.b, r.status === "done" ? "done" : "live");
+  app.addEventListener("change", (e) => {
+    if (e.target.id === "slot-pick") { state.slot = Number(e.target.value); showAdmin(); }
   });
 
   /* when results change elsewhere (or on first load) redraw, unless someone is typing */
