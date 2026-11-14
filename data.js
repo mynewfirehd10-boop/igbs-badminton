@@ -1,4 +1,5 @@
 /* IGBS Badminton Tournament 2026 — tournament data.
+   Source: IGBS-Badminton-Groups-and-Fixture-2026.pdf only.
    Everything the site shows comes from this file.
    Later, RESULTS (and the rest) will be loaded from the live database instead. */
 
@@ -7,8 +8,7 @@ const EVENT = {
   start: "15:00",
   end: "22:00",
   tz: "+01:00",
-  venue: "Billwerder Billdeich 607, 21033 Hamburg",
-  mapUrl: "https://www.google.com/maps/search/?api=1&query=Billwerder+Billdeich+607+21033+Hamburg",
+  venue: "Hamburg",
   slotMinutes: 20,
 };
 

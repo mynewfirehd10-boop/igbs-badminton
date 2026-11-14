@@ -8,7 +8,7 @@
       org: "IGBS e.V. আয়োজিত",
       title: "ব্যাডমিন্টন টুর্নামেন্ট ২০২৬",
       tabHome: "হোম", tabFixture: "ফিক্সচার", tabGroups: "গ্রুপ", tabKnockout: "নকআউট", tabRules: "নিয়ম",
-      date: "তারিখ", dateVal: "২২ নভেম্বর ২০২৬, রবিবার", time: "সময়", timeVal: "বিকেল ৩টা – রাত ১০টা", venue: "স্থান",
+      date: "তারিখ", dateVal: "২২ নভেম্বর ২০২৬, রবিবার", time: "সময়", timeVal: "বিকেল ৩টা – রাত ১০টা", venue: "স্থান", venueVal: "হামবুর্গ",
       daysToGo: (n) => `আর ${n} দিন বাকি`, today: "আজ বিকেল ৩টায় শুরু", inPlay: "খেলা চলছে", finished: "টুর্নামেন্ট শেষ হয়েছে",
       round: (n) => `রাউন্ড ${n}`, QF: "কোয়ার্টার ফাইনাল", SF: "সেমিফাইনাল", F: "ফাইনাল",
       firstUp: "প্রথম রাউন্ড", now: "এখন", court: "কোর্ট", freeCourt: "এই সময়ে কোর্ট ফাঁকা", live: "লাইভ",
@@ -25,7 +25,7 @@
       quickFixture: "আপনার খেলা খুঁজুন", quickFixtureSub: "দল বেছে নিলে আপনার সব ম্যাচ, সময় ও কোর্ট দেখাবে",
       quickGroups: "গ্রুপ ও পয়েন্ট টেবিল", quickGroupsSub: "৫টি গ্রুপ, ২৪টি দল",
       quickRules: "খেলার নিয়ম", quickRulesSub: "১৫ পয়েন্টের এক গেম",
-      fixtureTitle: "ফিক্সচার", fixtureSub: "৪৬টি গ্রুপ ম্যাচ ও ১৪টি নকআউট ম্যাচ। সময়গুলো আনুমানিক; আগের খেলা শেষ হলে পরের খেলা শুরু হবে।",
+      fixtureTitle: "ফিক্সচার", fixtureSub: "৪৬টি গ্রুপ ম্যাচ ও ১৪টি নকআউট ম্যাচ, চারটি কোর্টে।",
       all: "সব", level: (n) => `লেভেল ${n}`, myTeam: "আমার দল", allTeams: "সব দল",
       noMatches: "এই বাছাইয়ে কোনো ম্যাচ নেই।",
       groupsTitle: "গ্রুপ ও পয়েন্ট টেবিল", groupsSub: "জয়ের সংখ্যা আগে, সমান হলে পয়েন্টের ব্যবধান। খেলা শেষ হলে টেবিল নিজে থেকেই হালনাগাদ হবে।",
@@ -39,39 +39,31 @@
         ["খেলার ধরন", [
           "প্রতিটি ম্যাচ এক গেমের, ১৫ পয়েন্টে।",
           "জিততে হলে দুই পয়েন্টের ব্যবধান লাগবে।",
-          "সব ম্যাচ ডাবলস। লটারিতে দল ও গ্রুপ ঠিক করা হয়েছে।",
         ]],
         ["গ্রুপ পর্ব", [
-          "লেভেল ১: দুই গ্রুপে ১০টি দল। প্রতি গ্রুপের প্রথম ৪টি দল কোয়ার্টার ফাইনালে উঠবে।",
-          "লেভেল ২: তিন গ্রুপে ১৪টি দল। L2-A ও L2-B থেকে ৩টি করে এবং L2-C থেকে ২টি দল উঠবে।",
-          "গ্রুপের প্রতিটি দল একে অপরের সাথে একবার খেলবে।",
-          "অবস্থান ঠিক হবে জয়ের সংখ্যা দিয়ে। সমান হলে পয়েন্টের ব্যবধান (নিজের পয়েন্ট বিয়োগ প্রতিপক্ষের পয়েন্ট) দেখা হবে।",
+          "২৪টি দল, ৪৮ জন খেলোয়াড়, পাঁচটি গ্রুপ। গ্রুপের ম্যাচ M01 থেকে M46।",
+          "L1-A ও L1-B: প্রতি গ্রুপে ৫টি দল, প্রথম ৪টি দল কোয়ার্টার ফাইনালে উঠবে।",
+          "L2-A ও L2-B: প্রতি গ্রুপে ৫টি দল, প্রথম ৩টি দল উঠবে। L2-C: ৪টি দল, প্রথম ২টি দল উঠবে।",
+          "অবস্থান ঠিক হবে জয়ের সংখ্যা দিয়ে, এরপর পয়েন্টের ব্যবধান দিয়ে। হিসাব শুধু নিজের গ্রুপের মধ্যে।",
+        ]],
+        ["কোর্ট", [
+          "লেভেল ১ খেলবে কোর্ট ১ ও ২ এ, লেভেল ২ খেলবে কোর্ট ৩ ও ৪ এ।",
+          "১৮:২০ এ লেভেল ১ এর গ্রুপ পর্ব শেষ হলে লেভেল ২ এর কিছু খেলা কোর্ট ১ এ হবে।",
+          "গ্রুপ পর্ব শেষ হবে ১৯:০০ টায়।",
         ]],
         ["নকআউট পর্ব", [
-          "কোয়ার্টার ফাইনাল, সেমিফাইনাল ও ফাইনাল। হারলে বিদায়।",
-          "তৃতীয় স্থানের জন্য কোনো ম্যাচ নেই।",
-          "প্রতি লেভেলের চ্যাম্পিয়ন ও রানার-আপ দল ট্রফি পাবে।",
-        ]],
-        ["খেলার দিন", [
-          "আপনার ম্যাচের সময়ের আগেই কোর্টের পাশে উপস্থিত থাকুন।",
-          "ইনডোর হলের জন্য পরিষ্কার জুতা সাথে আনুন।",
-          "২০ মিনিটের সময়গুলো আনুমানিক। দেরি হলে কমিটি সূচি ঠিক করবে।",
-          "হালকা নাস্তা ও রাতের খাবারের ব্যবস্থা থাকবে।",
-        ]],
-        ["অংশগ্রহণ", [
-          "শুধু হামবুর্গে বসবাসরত বা আগে বসবাস করেছেন এমন বাংলাদেশিরা খেলতে পারবেন।",
-          "কেউ নিজের মানের চেয়ে নিচের গ্রুপে নিবন্ধন করে থাকলে কমিটি সেই দলকে বাদ দিতে পারে।",
-          "যেকোনো বিষয়ে কমিটির সিদ্ধান্তই চূড়ান্ত।",
+          "কোয়ার্টার ফাইনাল, সেমিফাইনাল ও ফাইনাল, দুই লেভেলে আলাদাভাবে।",
+          "কোয়ার্টার ফাইনালে একই গ্রুপের দল মুখোমুখি হবে না।",
+          "১৯:০০ – ১৯:১০ কারা উঠল তা নিশ্চিত করা হবে। সেমিফাইনাল ও ফাইনালের আগে ২০ মিনিট করে বিরতি।",
         ]],
       ],
-      contact: "যোগাযোগ: ওয়াসিম সাজ্জাদ, 0176 32383640",
       foot: "IGBS e.V. · হামবুর্গ",
     },
     en: {
       org: "Organised by IGBS e.V.",
       title: "Badminton Tournament 2026",
       tabHome: "Home", tabFixture: "Fixture", tabGroups: "Groups", tabKnockout: "Knockout", tabRules: "Rules",
-      date: "Date", dateVal: "Sunday, 22 November 2026", time: "Time", timeVal: "15:00 – 22:00", venue: "Venue",
+      date: "Date", dateVal: "Sunday, 22 November 2026", time: "Time", timeVal: "15:00 – 22:00", venue: "Venue", venueVal: "Hamburg",
       daysToGo: (n) => (n === 1 ? "1 day to go" : `${n} days to go`), today: "Starts today at 15:00", inPlay: "Play is under way", finished: "The tournament has finished",
       round: (n) => `Round ${n}`, QF: "Quarterfinals", SF: "Semifinals", F: "Finals",
       firstUp: "First round", now: "Now", court: "Court", freeCourt: "No match on this court", live: "Live",
@@ -88,7 +80,7 @@
       quickFixture: "Find your matches", quickFixtureSub: "Pick your team to see every match, time and court",
       quickGroups: "Groups and standings", quickGroupsSub: "5 groups, 24 teams",
       quickRules: "Rules", quickRulesSub: "One game to 15 points",
-      fixtureTitle: "Fixture", fixtureSub: "46 group matches and 14 knockout matches. Times are estimates; each match starts when the one before it ends.",
+      fixtureTitle: "Fixture", fixtureSub: "46 group matches and 14 knockout matches on four courts.",
       all: "All", level: (n) => `Level ${n}`, myTeam: "My team", allTeams: "All teams",
       noMatches: "No matches for this selection.",
       groupsTitle: "Groups and standings", groupsSub: "Wins count first, then points difference. The tables update on their own as results come in.",
@@ -102,32 +94,24 @@
         ["Match format", [
           "Every match is one game to 15 points.",
           "A two-point lead is needed to win.",
-          "All matches are doubles. Teams and groups were set by lottery.",
         ]],
         ["Group stage", [
-          "Level 1: 10 teams in two groups. The top 4 of each group reach the quarterfinals.",
-          "Level 2: 14 teams in three groups. The top 3 of L2-A and L2-B and the top 2 of L2-C go through.",
-          "Each team plays every other team in its group once.",
-          "Standings go by wins. If teams are level, points difference decides (points scored minus points conceded).",
+          "24 teams, 48 players, five groups. Group matches are M01 to M46.",
+          "L1-A and L1-B: 5 teams each, the top 4 reach the quarterfinals.",
+          "L2-A and L2-B: 5 teams each, the top 3 go through. L2-C: 4 teams, the top 2 go through.",
+          "Standings go by wins first, then points difference, within the group only.",
+        ]],
+        ["Courts", [
+          "Level 1 plays on Courts 1 and 2, Level 2 on Courts 3 and 4.",
+          "After Level 1 group play finishes at 18:20, some Level 2 games move to Court 1.",
+          "Group play ends at 19:00.",
         ]],
         ["Knockout stage", [
-          "Quarterfinals, semifinals and a final. The loser is out.",
-          "There is no third-place match.",
-          "The champion and runner-up of each level receive a trophy.",
-        ]],
-        ["On the day", [
-          "Be at your court before your slot starts.",
-          "Bring clean indoor shoes.",
-          "The 20-minute slots are estimates. If play runs late, the committee adjusts the schedule.",
-          "Snacks and dinner are provided.",
-        ]],
-        ["Who can play", [
-          "Only Bangladeshis who live in Hamburg or have lived there before.",
-          "If a player registered below their real level, the committee may withdraw that team.",
-          "The committee's decision is final in every case.",
+          "Quarterfinals, semifinals and a final, separately for each level.",
+          "Quarterfinals avoid opponents from the same group.",
+          "19:00 – 19:10 qualifiers are confirmed. There is a 20-minute rest before the semifinals and before the finals.",
         ]],
       ],
-      contact: "Contact: Wasaim Sazzad, 0176 32383640",
       foot: "IGBS e.V. · Hamburg",
     },
   };
@@ -295,7 +279,7 @@
         <dl class="facts">
           <div><dt>${t.date}</dt><dd>${t.dateVal}</dd></div>
           <div><dt>${t.time}</dt><dd>${t.timeVal}</dd></div>
-          <div><dt>${t.venue}</dt><dd><a href="${EVENT.mapUrl}" target="_blank" rel="noopener">${EVENT.venue}</a></dd></div>
+          <div><dt>${t.venue}</dt><dd>${t.venueVal}</dd></div>
         </dl>
         <p class="status ${ph.key === "live" ? "is-live" : ""}"><span class="dot"></span>${statusText}</p>
       </div></section>
@@ -403,7 +387,6 @@
       <div class="page-head"><h1>${t.rulesTitle}</h1></div>
       <div class="rules">
         ${t.rules.map(([h, items]) => `<h2>${h}</h2><ul>${items.map((x) => `<li>${x}</li>`).join("")}</ul>`).join("")}
-        <p class="callout">${t.contact}</p>
       </div>`;
   }
 
