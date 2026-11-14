@@ -42,7 +42,7 @@ const TEAMS = {
   "1B": { short: "Siam / Imran", players: ["Md Shahriar Hossain Siam", "Md Shafiqul Islam Imran"] },
   "1C": { short: "Shuvo / Wassim", players: ["Afran Shuvo", "Wasaim Sazzad"] },
   "1D": { short: "Rakib / Tayeb", players: ["Rakib Hasan", "Jahid Hasan Tayeb"] },
-  "1E": { short: "Alif / Gani", players: ["Alif Md Asif Khan", "Sayed Md Abrar Gani"] },
+  "1E": { short: "Alif / Gani", players: ["Alif", "Sayed Md Abrar Gani"] },
   "1F": { short: "Mirfath / Tanvir Hossain", players: ["Mirfath Karim", "Md Tanvir Hossain"] },
   "1G": { short: "Badhon / Imon", players: ["S M Badhan", "Imon Hosen"] },
   "1H": { short: "Inad / Tawhid", players: ["Sayed Md Inteaser Gani", "Md Golam Mosabbir Tawhid"] },
