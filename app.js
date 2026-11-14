@@ -9,19 +9,22 @@
       title: "ব্যাডমিন্টন টুর্নামেন্ট ২০২৬",
       tabHome: "হোম", tabFixture: "ফিক্সচার", tabGroups: "গ্রুপ", tabKnockout: "নকআউট", tabRules: "নিয়ম",
       date: "তারিখ", dateVal: "২২ নভেম্বর ২০২৬, রবিবার", time: "সময়", timeVal: "দুপুর ২টা – রাত ১০টা", venue: "স্থান",
-      daysToGo: (n) => `আর ${n} দিন বাকি`, today: "আজ দুপুর ২টায় শুরু", inPlay: "খেলা চলছে", finished: "টুর্নামেন্ট শেষ হয়েছে",
+      daysToGo: (n) => `আর ${n} দিন বাকি`, today: "আজ দুপুর ২:২০ এ খেলা শুরু", inPlay: "খেলা চলছে", finished: "টুর্নামেন্ট শেষ হয়েছে",
       round: (n) => `রাউন্ড ${n}`, QF: "কোয়ার্টার ফাইনাল", SF: "সেমিফাইনাল", F: "ফাইনাল",
-      firstUp: "প্রথম রাউন্ড", now: "এখন", court: "কোর্ট", freeCourt: "এই সময়ে কোর্ট ফাঁকা", live: "লাইভ",
+      firstUp: "প্রথম রাউন্ড", prayer: { asr: "আসরের নামাজ", maghrib: "মাগরিবের নামাজ", isha: "এশার নামাজ" }, noPlay: (a, b) => `নামাজের বিরতি, ${a} – ${b}। এই সময়ে কোনো খেলা নেই।`, now: "এখন", court: "কোর্ট", freeCourt: "এই সময়ে কোর্ট ফাঁকা", live: "লাইভ",
       prev: "আগের সময়", next: "পরের সময়",
       planTitle: "দিনের সূচি",
       plan: [
-        ["14:00 – 17:20", "লেভেল ২ গ্রুপ পর্ব"],
-        ["15:40 – 19:00", "লেভেল ১ গ্রুপ পর্ব, কোর্ট ১ ও ২ এ"],
-        ["17:40 – 19:00", "লেভেল ২ কোয়ার্টার ফাইনাল ও সেমিফাইনাল, কোর্ট ৩ ও ৪ এ"],
-        ["19:30", "লেভেল ১ কোয়ার্টার ফাইনাল"],
-        ["20:10", "লেভেল ১ সেমিফাইনাল"],
-        ["20:50", "দুই লেভেলের ফাইনাল"],
-        ["21:10", "ট্রফি প্রদান ও ছবি"],
+        ["14:00 – 14:20", "আসরের নামাজ"],
+        ["14:20 – 18:00", "লেভেল ২ গ্রুপ পর্ব"],
+        ["16:00 – 19:40", "লেভেল ১ গ্রুপ পর্ব, কোর্ট ১ ও ২ এ"],
+        ["16:20 – 16:40", "মাগরিবের নামাজ"],
+        ["18:20 – 19:40", "লেভেল ২ কোয়ার্টার ফাইনাল ও সেমিফাইনাল, কোর্ট ৩ ও ৪ এ"],
+        ["19:50", "লেভেল ১ কোয়ার্টার ফাইনাল"],
+        ["20:10 – 20:30", "এশার নামাজ"],
+        ["20:30", "লেভেল ১ সেমিফাইনাল"],
+        ["21:10", "দুই লেভেলের ফাইনাল"],
+        ["21:30", "ট্রফি প্রদান ও ছবি"],
       ],
       quickFixture: "আপনার খেলা খুঁজুন", quickFixtureSub: "দল বেছে নিলে আপনার সব ম্যাচ, সময় ও কোর্ট দেখাবে",
       quickGroups: "গ্রুপ ও পয়েন্ট টেবিল", quickGroupsSub: "৫টি গ্রুপ, ২৪টি দল",
@@ -48,16 +51,17 @@
           "অবস্থান ঠিক হবে জয়ের সংখ্যা দিয়ে, এরপর পয়েন্টের ব্যবধান দিয়ে। হিসাব শুধু নিজের গ্রুপের মধ্যে।",
         ]],
         ["সময় ও কোর্ট", [
-          "লেভেল ২ এর গ্রুপ ম্যাচ দুপুর ২টায় শুরু। L2-A কোর্ট ৩ এ, L2-B কোর্ট ৪ এ, আর L2-C কোর্ট ১ ও ২ এ খেলবে।",
-          "লেভেল ১ এর গ্রুপ ম্যাচ ১৫:৪০ এ শুরু। L1-A কোর্ট ১ এ এবং L1-B কোর্ট ২ এ খেলবে।",
-          "L2-C এর সব খেলা ১৫:৪০ এর মধ্যে শেষ হবে। L2-A ও L2-B এর বাকি খেলা কোর্ট ৩ ও ৪ এ চলবে, ১৭:২০ পর্যন্ত।",
+          "আসরের নামাজের পর ১৪:২০ এ লেভেল ২ এর গ্রুপ ম্যাচ শুরু। L2-A কোর্ট ৩ এ, L2-B কোর্ট ৪ এ, আর L2-C কোর্ট ১ ও ২ এ খেলবে।",
+          "লেভেল ১ এর গ্রুপ ম্যাচ ১৬:০০ টায় শুরু। L1-A কোর্ট ১ এ এবং L1-B কোর্ট ২ এ খেলবে।",
+          "L2-C এর সব খেলা ১৬:০০ টার মধ্যে শেষ হবে। L2-A ও L2-B এর বাকি খেলা কোর্ট ৩ ও ৪ এ চলবে, ১৮:০০ পর্যন্ত।",
           "কোনো দল পরপর দুই রাউন্ডে খেলবে না।",
+          "নামাজের বিরতি: আসর ১৪:০০ – ১৪:২০, মাগরিব ১৬:২০ – ১৬:৪০, এশা ২০:১০ – ২০:৩০। এই সময়ে কোনো খেলা হবে না।",
         ]],
         ["নকআউট পর্ব", [
           "কোয়ার্টার ফাইনাল, সেমিফাইনাল ও ফাইনাল, দুই লেভেলে আলাদাভাবে।",
           "কোয়ার্টার ফাইনালে একই গ্রুপের দল মুখোমুখি হবে না।",
-          "লেভেল ২ এর কোয়ার্টার ফাইনাল ১৭:৪০ থেকে এবং সেমিফাইনাল ১৮:৪০ এ, কোর্ট ৩ ও ৪ এ।",
-          "লেভেল ১ এর কোয়ার্টার ফাইনাল ১৯:৩০ এ এবং সেমিফাইনাল ২০:১০ এ। দুই লেভেলের ফাইনাল ২০:৫০ এ।",
+          "লেভেল ২ এর কোয়ার্টার ফাইনাল ১৮:২০ থেকে এবং সেমিফাইনাল ১৯:২০ এ, কোর্ট ৩ ও ৪ এ।",
+          "লেভেল ১ এর কোয়ার্টার ফাইনাল ১৯:৫০ এ, এরপর এশার নামাজ, তারপর ২০:৩০ এ সেমিফাইনাল। দুই লেভেলের ফাইনাল ২১:১০ এ।",
         ]],
       ],
       foot: "IGBS e.V. · হামবুর্গ",
@@ -67,19 +71,22 @@
       title: "Badminton Tournament 2026",
       tabHome: "Home", tabFixture: "Fixture", tabGroups: "Groups", tabKnockout: "Knockout", tabRules: "Rules",
       date: "Date", dateVal: "Sunday, 22 November 2026", time: "Time", timeVal: "14:00 – 22:00", venue: "Venue",
-      daysToGo: (n) => (n === 1 ? "1 day to go" : `${n} days to go`), today: "Starts today at 14:00", inPlay: "Play is under way", finished: "The tournament has finished",
+      daysToGo: (n) => (n === 1 ? "1 day to go" : `${n} days to go`), today: "Play starts today at 14:20", inPlay: "Play is under way", finished: "The tournament has finished",
       round: (n) => `Round ${n}`, QF: "Quarterfinals", SF: "Semifinals", F: "Finals",
-      firstUp: "First round", now: "Now", court: "Court", freeCourt: "No match on this court", live: "Live",
+      firstUp: "First round", prayer: { asr: "Asr prayer", maghrib: "Maghrib prayer", isha: "Isha prayer" }, noPlay: (a, b) => `Prayer break, ${a} – ${b}. No play on any court.`, now: "Now", court: "Court", freeCourt: "No match on this court", live: "Live",
       prev: "Earlier slot", next: "Later slot",
       planTitle: "Plan for the day",
       plan: [
-        ["14:00 – 17:20", "Level 2 group stage"],
-        ["15:40 – 19:00", "Level 1 group stage on Courts 1 and 2"],
-        ["17:40 – 19:00", "Level 2 quarterfinals and semifinals on Courts 3 and 4"],
-        ["19:30", "Level 1 quarterfinals"],
-        ["20:10", "Level 1 semifinals"],
-        ["20:50", "Finals for both levels"],
-        ["21:10", "Trophies and photographs"],
+        ["14:00 – 14:20", "Asr prayer"],
+        ["14:20 – 18:00", "Level 2 group stage"],
+        ["16:00 – 19:40", "Level 1 group stage on Courts 1 and 2"],
+        ["16:20 – 16:40", "Maghrib prayer"],
+        ["18:20 – 19:40", "Level 2 quarterfinals and semifinals on Courts 3 and 4"],
+        ["19:50", "Level 1 quarterfinals"],
+        ["20:10 – 20:30", "Isha prayer"],
+        ["20:30", "Level 1 semifinals"],
+        ["21:10", "Finals for both levels"],
+        ["21:30", "Trophies and photographs"],
       ],
       quickFixture: "Find your matches", quickFixtureSub: "Pick your team to see every match, time and court",
       quickGroups: "Groups and standings", quickGroupsSub: "5 groups, 24 teams",
@@ -106,16 +113,17 @@
           "Standings go by wins first, then points difference, within the group only.",
         ]],
         ["Times and courts", [
-          "Level 2 group matches start at 14:00. L2-A plays on Court 3, L2-B on Court 4, and L2-C on Courts 1 and 2.",
-          "Level 1 group matches start at 15:40. L1-A plays on Court 1 and L1-B on Court 2.",
-          "L2-C finishes by 15:40. The remaining L2-A and L2-B matches continue on Courts 3 and 4 until 17:20.",
+          "Level 2 group matches start at 14:20, after Asr. L2-A plays on Court 3, L2-B on Court 4, and L2-C on Courts 1 and 2.",
+          "Level 1 group matches start at 16:00. L1-A plays on Court 1 and L1-B on Court 2.",
+          "L2-C finishes by 16:00. The remaining L2-A and L2-B matches continue on Courts 3 and 4 until 18:00.",
           "No team plays two rounds in a row.",
+          "Prayer breaks: Asr 14:00 – 14:20, Maghrib 16:20 – 16:40, Isha 20:10 – 20:30. No play during these.",
         ]],
         ["Knockout stage", [
           "Quarterfinals, semifinals and a final, separately for each level.",
           "Quarterfinals avoid opponents from the same group.",
-          "Level 2 quarterfinals start at 17:40 and semifinals at 18:40, on Courts 3 and 4.",
-          "Level 1 quarterfinals are at 19:30 and semifinals at 20:10. Both finals are at 20:50.",
+          "Level 2 quarterfinals start at 18:20 and semifinals at 19:20, on Courts 3 and 4.",
+          "Level 1 quarterfinals are at 19:50, followed by Isha, then semifinals at 20:30. Both finals are at 21:10.",
         ]],
       ],
       foot: "IGBS e.V. · Hamburg",
@@ -145,7 +153,7 @@
   const MATCHES = [
     ...GROUP_MATCHES.map(([id, round, court, group, a, b]) => ({
       id, stage: "G", round, court, group, level: groupById[group].level,
-      time: fromMin(toMin(EVENT.start) + (round - 1) * EVENT.slotMinutes), a, b,
+      time: ROUND_TIMES[round - 1], a, b,
     })),
     ...KNOCKOUT.map((k) => ({ ...k })),
   ];
@@ -158,8 +166,10 @@
     s.matches.push(m);
     if (m.stage === "G") s.round = m.round;
   });
+  BREAKS.forEach((b) => SLOTS.push({ time: b.time, end: b.end, brk: b.key, matches: [] }));
   SLOTS.sort((a, b) => toMin(a.time) - toMin(b.time));
-  const slotName = (s) => (s.round ? T().round(s.round) : [...new Set(s.matches.map((m) => T()[m.stage]))].join(", "));
+  const FIRST_PLAY = SLOTS.findIndex((s) => s.matches.length);
+  const slotName = (s) => s.brk ? T().prayer[s.brk] : (s.round ? T().round(s.round) : [...new Set(s.matches.map((m) => T()[m.stage]))].join(", "));
 
   /* ---------- results, standings, knockout sides ---------- */
   const result = (id) => RESULTS[id] || null;
@@ -205,7 +215,7 @@
     const live = SLOTS.findIndex((s) => s.matches.some((m) => result(m.id) && result(m.id).status === "live"));
     if (live >= 0) return live;
     const ph = phase().key;
-    if (ph === "before" || ph === "today") return 0;
+    if (ph === "before" || ph === "today") return FIRST_PLAY;
     if (ph === "after") return SLOTS.length - 1;
     const now = new Date();
     let idx = 0;
@@ -277,7 +287,7 @@
     const cur = currentSlotIndex();
     if (state.slot === null) state.slot = cur;
     const s = SLOTS[state.slot];
-    const label = state.slot === cur ? (ph.key === "live" ? t.now : state.slot === 0 ? t.firstUp : slotName(s)) : slotName(s);
+    const label = state.slot === cur ? (ph.key === "live" ? t.now : state.slot === FIRST_PLAY ? t.firstUp : slotName(s)) : slotName(s);
     const arrow = (d) => `<svg viewBox="0 0 24 24"><path d="${d}"/></svg>`;
     return `
       <section class="hero"><div class="hero-inner">
@@ -300,7 +310,7 @@
           <button class="step" data-step="-1" aria-label="${t.prev}" ${state.slot === 0 ? "disabled" : ""}>${arrow("M15 5l-7 7 7 7")}</button>
           <button class="step" data-step="1" aria-label="${t.next}" ${state.slot === SLOTS.length - 1 ? "disabled" : ""}>${arrow("M9 5l7 7-7 7")}</button>
         </div>
-        <div class="courts">${[1, 2, 3, 4].map((n) => courtView(n, s.matches.find((m) => m.court === n))).join("")}</div>
+        ${s.brk ? `<p class="pause">${t.noPlay(s.time, s.end)}</p>` : `<div class="courts">${[1, 2, 3, 4].map((n) => courtView(n, s.matches.find((m) => m.court === n))).join("")}</div>`}
       </div></section>
 
       <section class="section">
@@ -323,6 +333,11 @@
       `<option value="${c}" ${state.team === c ? "selected" : ""}>${c} ${esc(TEAMS[c].short)}</option>`).join("")}</optgroup>`).join("");
     const involves = (m) => ["a", "b"].some((k) => sideView(m, k).code === state.team);
     const blocks = SLOTS.map((s, i) => {
+      if (s.brk) return `
+        <section class="slot-block is-break">
+          <div class="slot-head"><span class="t">${s.time}</span><span class="n">${slotName(s)}</span></div>
+          <p class="pause">${t.noPlay(s.time, s.end)}</p>
+        </section>`;
       let ms = s.matches.filter((m) => state.level === "all" || String(m.level) === state.level);
       if (state.team) ms = ms.filter((m) => m.stage !== "G" || involves(m));
       if (!ms.length) return "";

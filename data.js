@@ -1,5 +1,5 @@
 /* IGBS Badminton Tournament 2026 — tournament data.
-   Teams and groups: IGBS-Badminton-Groups-and-Fixture-2026.pdf. Timetable: revised 14 Nov (Level 2 from 14:00, Level 1 from 15:40).
+   Teams and groups: IGBS-Badminton-Groups-and-Fixture-2026.pdf. Timetable: revised 14 Nov (Level 2 from 14:00, Level 1 from 16:00, prayer breaks added).
    Everything the site shows comes from this file.
    Later, RESULTS (and the rest) will be loaded from the live database instead. */
 
@@ -12,6 +12,19 @@ const EVENT = {
   mapUrl: "https://www.google.com/maps/search/?api=1&query=Billwerder+Billdeich+607+21033+Hamburg",
   slotMinutes: 20,
 };
+
+/* Start time of each group-stage round. Round 6 is followed by the Maghrib break. */
+const ROUND_TIMES = [
+  "14:20", "14:40", "15:00", "15:20", "15:40", "16:00",
+  "16:40", "17:00", "17:20", "17:40", "18:00", "18:20", "18:40", "19:00", "19:20",
+];
+
+/* Prayer breaks: no play on any court. */
+const BREAKS = [
+  { key: "asr", time: "14:00", end: "14:20" },
+  { key: "maghrib", time: "16:20", end: "16:40" },
+  { key: "isha", time: "20:10", end: "20:30" },
+];
 
 /* qualify = how many teams go through to the quarterfinals */
 const GROUPS = [
@@ -51,10 +64,9 @@ const TEAMS = {
 };
 
 /* Group stage: [match id, round, court, group, side A, side B]
-   Round 1 starts at EVENT.start; each round is one 20-minute slot.
-   Level 2 starts at 14:00 on all four courts. From 15:40 (round 6) L1-A plays on
-   Court 1 and L1-B on Court 2, and the rest of L2-A and L2-B stay on Courts 3 and 4.
-   No team plays two rounds in a row. */
+   Round times are in ROUND_TIMES. Level 2 starts at 14:20 after Asr on all four courts.
+   From 16:00 (round 6) L1-A plays on Court 1 and L1-B on Court 2, and the rest of
+   L2-A and L2-B stay on Courts 3 and 4. No team plays two rounds in a row. */
 const GROUP_MATCHES = [
   ["M01", 1, 1, "L2-C", "2K", "2L"], ["M02", 1, 2, "L2-C", "2M", "2N"], ["M03", 1, 3, "L2-A", "2A", "2B"], ["M04", 1, 4, "L2-B", "2F", "2G"],
   ["M05", 2, 3, "L2-A", "2C", "2D"], ["M06", 2, 4, "L2-B", "2H", "2I"],
@@ -75,20 +87,20 @@ const GROUP_MATCHES = [
 
 /* Knockout: side is {g, pos} = position in a group, or {w} = winner of a match */
 const KNOCKOUT = [
-  { id: "2QF1", stage: "QF", level: 2, time: "17:40", court: 3, a: { g: "L2-A", pos: 1 }, b: { g: "L2-B", pos: 3 } },
-  { id: "2QF2", stage: "QF", level: 2, time: "17:40", court: 4, a: { g: "L2-C", pos: 1 }, b: { g: "L2-A", pos: 3 } },
-  { id: "2QF3", stage: "QF", level: 2, time: "18:00", court: 3, a: { g: "L2-B", pos: 1 }, b: { g: "L2-C", pos: 2 } },
-  { id: "2QF4", stage: "QF", level: 2, time: "18:00", court: 4, a: { g: "L2-A", pos: 2 }, b: { g: "L2-B", pos: 2 } },
-  { id: "2SF1", stage: "SF", level: 2, time: "18:40", court: 3, a: { w: "2QF1" }, b: { w: "2QF2" } },
-  { id: "2SF2", stage: "SF", level: 2, time: "18:40", court: 4, a: { w: "2QF3" }, b: { w: "2QF4" } },
-  { id: "1QF1", stage: "QF", level: 1, time: "19:30", court: 1, a: { g: "L1-A", pos: 1 }, b: { g: "L1-B", pos: 4 } },
-  { id: "1QF2", stage: "QF", level: 1, time: "19:30", court: 2, a: { g: "L1-B", pos: 2 }, b: { g: "L1-A", pos: 3 } },
-  { id: "1QF3", stage: "QF", level: 1, time: "19:30", court: 3, a: { g: "L1-B", pos: 1 }, b: { g: "L1-A", pos: 4 } },
-  { id: "1QF4", stage: "QF", level: 1, time: "19:30", court: 4, a: { g: "L1-A", pos: 2 }, b: { g: "L1-B", pos: 3 } },
-  { id: "1SF1", stage: "SF", level: 1, time: "20:10", court: 1, a: { w: "1QF1" }, b: { w: "1QF2" } },
-  { id: "1SF2", stage: "SF", level: 1, time: "20:10", court: 2, a: { w: "1QF3" }, b: { w: "1QF4" } },
-  { id: "1F", stage: "F", level: 1, time: "20:50", court: 1, a: { w: "1SF1" }, b: { w: "1SF2" } },
-  { id: "2F", stage: "F", level: 2, time: "20:50", court: 3, a: { w: "2SF1" }, b: { w: "2SF2" } },
+  { id: "2QF1", stage: "QF", level: 2, time: "18:20", court: 3, a: { g: "L2-A", pos: 1 }, b: { g: "L2-B", pos: 3 } },
+  { id: "2QF2", stage: "QF", level: 2, time: "18:20", court: 4, a: { g: "L2-C", pos: 1 }, b: { g: "L2-A", pos: 3 } },
+  { id: "2QF3", stage: "QF", level: 2, time: "18:40", court: 3, a: { g: "L2-B", pos: 1 }, b: { g: "L2-C", pos: 2 } },
+  { id: "2QF4", stage: "QF", level: 2, time: "18:40", court: 4, a: { g: "L2-A", pos: 2 }, b: { g: "L2-B", pos: 2 } },
+  { id: "2SF1", stage: "SF", level: 2, time: "19:20", court: 3, a: { w: "2QF1" }, b: { w: "2QF2" } },
+  { id: "2SF2", stage: "SF", level: 2, time: "19:20", court: 4, a: { w: "2QF3" }, b: { w: "2QF4" } },
+  { id: "1QF1", stage: "QF", level: 1, time: "19:50", court: 1, a: { g: "L1-A", pos: 1 }, b: { g: "L1-B", pos: 4 } },
+  { id: "1QF2", stage: "QF", level: 1, time: "19:50", court: 2, a: { g: "L1-B", pos: 2 }, b: { g: "L1-A", pos: 3 } },
+  { id: "1QF3", stage: "QF", level: 1, time: "19:50", court: 3, a: { g: "L1-B", pos: 1 }, b: { g: "L1-A", pos: 4 } },
+  { id: "1QF4", stage: "QF", level: 1, time: "19:50", court: 4, a: { g: "L1-A", pos: 2 }, b: { g: "L1-B", pos: 3 } },
+  { id: "1SF1", stage: "SF", level: 1, time: "20:30", court: 1, a: { w: "1QF1" }, b: { w: "1QF2" } },
+  { id: "1SF2", stage: "SF", level: 1, time: "20:30", court: 2, a: { w: "1QF3" }, b: { w: "1QF4" } },
+  { id: "1F", stage: "F", level: 1, time: "21:10", court: 1, a: { w: "1SF1" }, b: { w: "1SF2" } },
+  { id: "2F", stage: "F", level: 2, time: "21:10", court: 3, a: { w: "2SF1" }, b: { w: "2SF2" } },
 ];
 
 /* Results. Example:  M01: { a: 15, b: 11, status: "done" }   status: "live" or "done" */
