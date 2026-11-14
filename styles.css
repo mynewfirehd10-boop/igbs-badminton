@@ -13,7 +13,7 @@
   --hair: rgba(243, 238, 223, .12);
   --shuttle: #E4523D;
   --display: "Fraunces", "Noto Serif Bengali", Georgia, serif;
-  --body: "Hind Siliguri", system-ui, sans-serif;
+  --body: "Noto Sans Bengali", "Hind Siliguri", system-ui, sans-serif;
   --tabbar: 64px;
 }
 
