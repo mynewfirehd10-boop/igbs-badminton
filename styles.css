@@ -39,8 +39,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
   position: sticky; top: 0; z-index: 20;
   display: flex; align-items: center; gap: 12px;
   padding: 10px 16px;
-  background: rgba(7, 19, 15, .92);
-  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  background: rgba(7, 19, 15, .97);
   border-bottom: 1px solid var(--brass-soft);
 }
 .brand { display: flex; align-items: center; gap: 8px; text-decoration: none; margin-right: auto; }
@@ -118,7 +117,7 @@ main:focus { outline: none; }
 }
 .facts div { flex: 1 1 200px; padding: 14px 16px; display: flex; flex-direction: column; gap: 2px; }
 .facts dt { color: var(--muted); font-size: .85rem; }
-.facts dd { margin: 0; font-weight: 500; font-size: 1.02rem; }
+.facts dd { margin: 0; overflow-wrap: anywhere; font-weight: 500; font-size: 1.02rem; }
 .facts a { text-decoration-color: var(--brass); text-underline-offset: 4px; }
 @media (min-width: 700px) { .facts div + div { border-left: 1px solid var(--brass-soft); } }
 @media (max-width: 699px) { .facts div + div { border-top: 1px solid var(--hair); } }
@@ -212,7 +211,7 @@ main:focus { outline: none; }
 /* ---------- filters ---------- */
 .filters { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin-bottom: 10px; }
 .seg { display: flex; border: 1px solid var(--brass); border-radius: 999px; overflow: hidden; }
-.seg button { border: 0; background: none; padding: 7px 16px; font-weight: 500; font-size: .92rem; color: var(--brass); min-height: 40px; }
+.seg button { border: 0; background: none; padding: 7px 14px; white-space: nowrap; font-weight: 500; font-size: .92rem; color: var(--brass); min-height: 40px; }
 .seg button[aria-pressed="true"] { background: var(--brass); color: var(--night); font-weight: 600; }
 .pick { display: flex; align-items: center; gap: 8px; font-weight: 500; font-size: .92rem; color: var(--muted); }
 .pick select {
@@ -305,3 +304,14 @@ td.w { font-family: var(--display); font-weight: 700; font-size: 1.08rem; font-v
 .rules ul { margin: 0; padding-left: 1.2rem; }
 .rules li { margin: 7px 0; }
 .rules li::marker { color: var(--brass); }
+
+/* small phones: keep filters and header inside the screen */
+@media (max-width: 400px) {
+  .seg { max-width: 100%; }
+  .seg button { flex: 1 1 auto; padding: 7px 8px; font-size: .86rem; }
+  .brand-text { flex-direction: column; gap: 2px; font-size: 1rem; }
+  .brand-text .brand-year { font-size: .8rem; }
+  .top { padding: 10px 12px; gap: 8px; }
+  .pick { flex-wrap: wrap; width: 100%; }
+  .pick select { flex: 1; min-width: 0; }
+}

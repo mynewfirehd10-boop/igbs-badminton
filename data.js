@@ -53,7 +53,7 @@ const TEAMS = {
   "2C": { short: "Goni / Naveed", players: ["Kazi Ataul Goni Shahin", "Md Naveed Hasnain"] },
   "2D": { short: "Rayhanul / Asif", players: ["Rayhanul Islam", "Asif"] },
   "2E": { short: "Haider / Fahim", players: ["Julfiqur Haider", "Abrar Fahim"] },
-  "2F": { short: "Abu Bakkar / Tasuar", players: ["Abubakar Abdullah", "SK Tashowar Tanzim Rahul"] },
+  "2F": { short: "Abdullah / Tashowar", players: ["Abubakar Abdullah", "SK Tashowar Tanzim Rahul"] },
   "2G": { short: "Raihan / Ifti", players: ["Md. Abdullah Al Mamun Raihan", "Ifti Salauddin"] },
   "2H": { short: "Riad / Mahbub Alam", players: ["Md Hasanur Rahman Riad", "Mahbub Alam"] },
   "2I": { short: "Zahin Azad / Fazlay Rabbi", players: ["Zaheen Azad", "Fazle Rabbee"] },

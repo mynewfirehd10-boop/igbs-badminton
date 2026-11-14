@@ -11,13 +11,13 @@
       date: "তারিখ", dateVal: "২২ নভেম্বর ২০২৬, রবিবার", time: "সময়", timeVal: "দুপুর ২টা – রাত ১০টা", venue: "স্থান",
       daysToGo: (n) => `আর ${n} দিন বাকি`, today: "আজ দুপুর ২:১৫ এ খেলা শুরু", inPlay: "খেলা চলছে", finished: "টুর্নামেন্ট শেষ হয়েছে",
       round: (n) => `রাউন্ড ${n}`, QF: "কোয়ার্টার ফাইনাল", SF: "সেমিফাইনাল", F: "ফাইনাল",
-      firstUp: "প্রথম রাউন্ড", prayer: { asr: "আসরের নামাজ", maghrib: "মাগরিবের নামাজ", isha: "এশার নামাজ", confirm: "যোগ্য দল নিশ্চিত করা" }, noPlay: (a, b, k) => (k === "confirm" ? `লেভেল ১ এর গ্রুপ শেষ, কোয়ার্টার ফাইনালের দল নিশ্চিত করা হচ্ছে, ${a} – ${b}। এই সময়ে কোনো খেলা নেই।` : `নামাজের বিরতি, ${a} – ${b}। এই সময়ে কোনো খেলা নেই।`), now: "এখন", court: "কোর্ট", freeCourt: "এই সময়ে কোর্ট ফাঁকা", live: "লাইভ",
+      firstUp: "প্রথম রাউন্ড", prayer: { asr: "আসরের নামাজ", maghrib: "মাগরিবের নামাজ", isha: "এশার নামাজ", confirm: "যোগ্য দল নিশ্চিত করা" }, noPlay: (a, b, k) => (k === "confirm" ? `লেভেল ১ এর গ্রুপ শেষ, কোয়ার্টার ফাইনালের দল নিশ্চিত করা হচ্ছে, ${a} – ${b}। এই সময়ে কোনো খেলা নেই।` : `নামাজের বিরতি, ${a} – ${b}। এই সময়ে কোনো খেলা নেই।`), now: "এখন", court: "কোর্ট", allCourts: "সব কোর্ট", freeCourt: "এই সময়ে কোর্ট ফাঁকা", live: "লাইভ",
       prev: "আগের সময়", next: "পরের সময়",
       planTitle: "দিনের সূচি",
       plan: [
         ["14:00 – 14:15", "আসরের নামাজ"],
         ["14:15 – 17:50", "লেভেল ২ গ্রুপ পর্ব"],
-        ["15:55 – 18:50", "লেভেল ১ গ্রুপ পর্ব, শেষ দিকে চারটি কোর্টে"],
+        ["14:15 – 18:50", "লেভেল ১ গ্রুপ পর্ব, শেষ রাউন্ডগুলোতে চারটি কোর্টে"],
         ["16:15 – 16:30", "মাগরিবের নামাজ"],
         ["18:50 – 19:00", "যোগ্য দল নিশ্চিত করা"],
         ["19:00 – 19:40", "কোয়ার্টার ফাইনাল, দুই লেভেল একসাথে, চারটি কোর্টে"],
@@ -74,13 +74,13 @@
       date: "Date", dateVal: "Sunday, 22 November 2026", time: "Time", timeVal: "14:00 – 22:00", venue: "Venue",
       daysToGo: (n) => (n === 1 ? "1 day to go" : `${n} days to go`), today: "Play starts today at 14:15", inPlay: "Play is under way", finished: "The tournament has finished",
       round: (n) => `Round ${n}`, QF: "Quarterfinals", SF: "Semifinals", F: "Finals",
-      firstUp: "First round", prayer: { asr: "Asr prayer", maghrib: "Maghrib prayer", isha: "Isha prayer", confirm: "Qualifiers confirmed" }, noPlay: (a, b, k) => (k === "confirm" ? `Level 1 groups are over and the quarterfinal line-up is confirmed, ${a} – ${b}. No play on any court.` : `Prayer break, ${a} – ${b}. No play on any court.`), now: "Now", court: "Court", freeCourt: "No match on this court", live: "Live",
+      firstUp: "First round", prayer: { asr: "Asr prayer", maghrib: "Maghrib prayer", isha: "Isha prayer", confirm: "Qualifiers confirmed" }, noPlay: (a, b, k) => (k === "confirm" ? `Level 1 groups are over and the quarterfinal line-up is confirmed, ${a} – ${b}. No play on any court.` : `Prayer break, ${a} – ${b}. No play on any court.`), now: "Now", court: "Court", allCourts: "All courts", freeCourt: "No match on this court", live: "Live",
       prev: "Earlier slot", next: "Later slot",
       planTitle: "Plan for the day",
       plan: [
         ["14:00 – 14:15", "Asr prayer"],
         ["14:15 – 17:50", "Level 2 group stage"],
-        ["15:55 – 18:50", "Level 1 group stage, on all four courts near the end"],
+        ["14:15 – 18:50", "Level 1 group stage, on all four courts in the last rounds"],
         ["16:15 – 16:30", "Maghrib prayer"],
         ["18:50 – 19:00", "Qualifiers confirmed"],
         ["19:00 – 19:40", "Quarterfinals of both levels together, on four courts"],
@@ -140,6 +140,7 @@
   const state = {
     lang: store.get("igbs-lang", "bn"),
     level: "all",
+    court: "all",
     team: store.get("igbs-team", ""),
     slot: null,
   };
@@ -288,7 +289,7 @@
           <div class="slot-head"><span class="t">${s.time}</span><span class="n">${slotName(s)}</span></div>
           <p class="pause">${t.noPlay(s.time, s.end, s.brk)}</p>
         </section>`;
-      let ms = s.matches.filter((m) => state.level === "all" || String(m.level) === state.level);
+      let ms = s.matches.filter((m) => (state.level === "all" || String(m.level) === state.level) && (state.court === "all" || String(m.court) === state.court));
       if (state.team) ms = ms.filter((m) => m.stage !== "G" || involves(m));
       if (!ms.length) return "";
       ms.sort((a, b) => a.court - b.court);
@@ -299,10 +300,12 @@
         </section>`;
     }).join("");
     const seg = (v, label) => `<button type="button" data-level="${v}" aria-pressed="${state.level === v}">${label}</button>`;
+    const cseg = (v, label) => `<button type="button" data-court="${v}" aria-pressed="${state.court === v}">${label}</button>`;
     return `
       <div class="page-head"><h1>${t.fixtureTitle}</h1><p>${t.fixtureSub}</p></div>
       <div class="filters">
         <div class="seg" role="group">${seg("all", t.all)}${seg("1", t.level(1))}${seg("2", t.level(2))}</div>
+        <div class="seg" role="group" aria-label="${t.court}">${cseg("all", t.allCourts)}${[1, 2, 3, 4].map((n) => cseg(String(n), `${t.court} ${state.lang === "bn" ? "১২৩৪"[n - 1] : n}`)).join("")}</div>
         <label class="pick">${t.myTeam}
           <select id="team-pick"><option value="">${t.allTeams}</option>${teamOpts}</select>
         </label>
@@ -387,7 +390,9 @@
     const step = e.target.closest("[data-step]");
     if (step) { state.slot = Math.max(0, Math.min(SLOTS.length - 1, state.slot + Number(step.dataset.step))); render(); return; }
     const lv = e.target.closest("[data-level]");
-    if (lv) { state.level = lv.dataset.level; render(); }
+    if (lv) { state.level = lv.dataset.level; render(); return; }
+    const ct = e.target.closest("[data-court]");
+    if (ct) { state.court = ct.dataset.court; render(); }
   });
   view.addEventListener("change", (e) => {
     if (e.target.id === "team-pick") { state.team = e.target.value; store.set("igbs-team", state.team); render(); }
