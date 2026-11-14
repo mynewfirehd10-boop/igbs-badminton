@@ -12,8 +12,8 @@
   --brass-soft: rgba(201, 164, 92, .28);
   --hair: rgba(243, 238, 223, .12);
   --shuttle: #E4523D;
-  --display: "Fraunces", "Noto Serif Bengali", Georgia, serif;
-  --body: "Noto Sans Bengali", "Hind Siliguri", system-ui, sans-serif;
+  --display: "Fraunces", "Tiro Bangla", Georgia, serif;
+  --body: "Anek Bangla", system-ui, sans-serif;
   --tabbar: 64px;
 }
 
@@ -29,7 +29,7 @@ body {
   padding-bottom: calc(var(--tabbar) + env(safe-area-inset-bottom));
 }
 h1, h2, h3, p { margin: 0; }
-h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.25; letter-spacing: -.005em; }
+h1, h2, h3 { font-synthesis: none; font-family: var(--display); font-weight: 600; line-height: 1.25; letter-spacing: -.005em; }
 a { color: inherit; }
 button { font: inherit; color: inherit; cursor: pointer; }
 :focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
