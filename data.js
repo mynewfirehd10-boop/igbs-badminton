@@ -23,7 +23,7 @@ const ROUND_TIMES = [
 const BREAKS = [
   { key: "asr", time: "14:00", end: "14:20" },
   { key: "maghrib", time: "16:20", end: "16:40" },
-  { key: "isha", time: "20:10", end: "20:30" },
+  { key: "isha", time: "20:00", end: "20:20" },
 ];
 
 /* qualify = how many teams go through to the quarterfinals */
@@ -93,14 +93,14 @@ const KNOCKOUT = [
   { id: "2QF4", stage: "QF", level: 2, time: "18:40", court: 4, a: { g: "L2-A", pos: 2 }, b: { g: "L2-B", pos: 2 } },
   { id: "2SF1", stage: "SF", level: 2, time: "19:20", court: 3, a: { w: "2QF1" }, b: { w: "2QF2" } },
   { id: "2SF2", stage: "SF", level: 2, time: "19:20", court: 4, a: { w: "2QF3" }, b: { w: "2QF4" } },
-  { id: "1QF1", stage: "QF", level: 1, time: "19:50", court: 1, a: { g: "L1-A", pos: 1 }, b: { g: "L1-B", pos: 4 } },
-  { id: "1QF2", stage: "QF", level: 1, time: "19:50", court: 2, a: { g: "L1-B", pos: 2 }, b: { g: "L1-A", pos: 3 } },
-  { id: "1QF3", stage: "QF", level: 1, time: "19:50", court: 3, a: { g: "L1-B", pos: 1 }, b: { g: "L1-A", pos: 4 } },
-  { id: "1QF4", stage: "QF", level: 1, time: "19:50", court: 4, a: { g: "L1-A", pos: 2 }, b: { g: "L1-B", pos: 3 } },
-  { id: "1SF1", stage: "SF", level: 1, time: "20:30", court: 1, a: { w: "1QF1" }, b: { w: "1QF2" } },
-  { id: "1SF2", stage: "SF", level: 1, time: "20:30", court: 2, a: { w: "1QF3" }, b: { w: "1QF4" } },
-  { id: "1F", stage: "F", level: 1, time: "21:10", court: 1, a: { w: "1SF1" }, b: { w: "1SF2" } },
-  { id: "2F", stage: "F", level: 2, time: "21:10", court: 3, a: { w: "2SF1" }, b: { w: "2SF2" } },
+  { id: "1QF1", stage: "QF", level: 1, time: "19:40", court: 1, a: { g: "L1-A", pos: 1 }, b: { g: "L1-B", pos: 4 } },
+  { id: "1QF2", stage: "QF", level: 1, time: "19:40", court: 2, a: { g: "L1-B", pos: 2 }, b: { g: "L1-A", pos: 3 } },
+  { id: "1QF3", stage: "QF", level: 1, time: "19:40", court: 3, a: { g: "L1-B", pos: 1 }, b: { g: "L1-A", pos: 4 } },
+  { id: "1QF4", stage: "QF", level: 1, time: "19:40", court: 4, a: { g: "L1-A", pos: 2 }, b: { g: "L1-B", pos: 3 } },
+  { id: "1SF1", stage: "SF", level: 1, time: "20:20", court: 1, a: { w: "1QF1" }, b: { w: "1QF2" } },
+  { id: "1SF2", stage: "SF", level: 1, time: "20:20", court: 2, a: { w: "1QF3" }, b: { w: "1QF4" } },
+  { id: "1F", stage: "F", level: 1, time: "21:00", court: 1, a: { w: "1SF1" }, b: { w: "1SF2" } },
+  { id: "2F", stage: "F", level: 2, time: "21:00", court: 3, a: { w: "2SF1" }, b: { w: "2SF2" } },
 ];
 
 /* Results. Example:  M01: { a: 15, b: 11, status: "done" }   status: "live" or "done" */
