@@ -11,7 +11,7 @@
       date: "তারিখ", dateVal: "২২ নভেম্বর ২০২৬, রবিবার", time: "সময়", timeVal: "দুপুর ২টা – রাত ১০টা", venue: "স্থান",
       daysToGo: (n) => `আর ${n} দিন বাকি`, today: "আজ দুপুর ২:১৫ এ খেলা শুরু", inPlay: "খেলা চলছে", finished: "টুর্নামেন্ট শেষ হয়েছে",
       round: (n) => `রাউন্ড ${n}`, QF: "কোয়ার্টার ফাইনাল", SF: "সেমিফাইনাল", F: "ফাইনাল",
-      firstUp: "প্রথম রাউন্ড", prayer: { asr: "আসরের নামাজ", maghrib: "মাগরিবের নামাজ", isha: "এশার নামাজ" }, noPlay: (a, b) => `নামাজের বিরতি, ${a} – ${b}। এই সময়ে কোনো খেলা নেই।`, now: "এখন", court: "কোর্ট", freeCourt: "এই সময়ে কোর্ট ফাঁকা", live: "লাইভ",
+      firstUp: "প্রথম রাউন্ড", prayer: { asr: "আসরের নামাজ", maghrib: "মাগরিবের নামাজ", isha: "এশার নামাজ", confirm: "যোগ্য দল নিশ্চিত করা" }, noPlay: (a, b, k) => (k === "confirm" ? `লেভেল ১ এর গ্রুপ শেষ, কোয়ার্টার ফাইনালের দল নিশ্চিত করা হচ্ছে, ${a} – ${b}। এই সময়ে কোনো খেলা নেই।` : `নামাজের বিরতি, ${a} – ${b}। এই সময়ে কোনো খেলা নেই।`), now: "এখন", court: "কোর্ট", freeCourt: "এই সময়ে কোর্ট ফাঁকা", live: "লাইভ",
       prev: "আগের সময়", next: "পরের সময়",
       planTitle: "দিনের সূচি",
       plan: [
@@ -19,11 +19,12 @@
         ["14:15 – 17:50", "লেভেল ২ গ্রুপ পর্ব"],
         ["15:55 – 18:50", "লেভেল ১ গ্রুপ পর্ব, শেষ দিকে চারটি কোর্টে"],
         ["16:15 – 16:30", "মাগরিবের নামাজ"],
-        ["18:50 – 19:30", "কোয়ার্টার ফাইনাল, দুই লেভেল একসাথে, চারটি কোর্টে"],
-        ["19:30 – 19:45", "এশার নামাজ"],
-        ["19:45", "চারটি সেমিফাইনাল একসাথে"],
-        ["20:25", "দুই লেভেলের ফাইনাল"],
-        ["20:45", "ট্রফি প্রদান ও ছবি"],
+        ["18:50 – 19:00", "যোগ্য দল নিশ্চিত করা"],
+        ["19:00 – 19:40", "কোয়ার্টার ফাইনাল, দুই লেভেল একসাথে, চারটি কোর্টে"],
+        ["19:40 – 19:55", "এশার নামাজ"],
+        ["19:55", "চারটি সেমিফাইনাল একসাথে"],
+        ["20:35", "দুই লেভেলের ফাইনাল"],
+        ["20:55", "ট্রফি প্রদান ও ছবি"],
       ],
       quickFixture: "আপনার খেলা খুঁজুন", quickFixtureSub: "দল বেছে নিলে আপনার সব ম্যাচ, সময় ও কোর্ট দেখাবে",
       quickGroups: "গ্রুপ ও পয়েন্ট টেবিল", quickGroupsSub: "৫টি গ্রুপ, ২৪টি দল",
@@ -55,13 +56,13 @@
           "L2-C এর সব খেলা ১৫:৫৫ এর মধ্যে শেষ হবে। L2-A ও L2-B এর বাকি খেলা কোর্ট ৩ ও ৪ এ চলবে, ১৭:৫০ পর্যন্ত।",
           "লেভেল ২ শেষ হলে লেভেল ১ এর বাকি ম্যাচগুলো (১৭:৫০ থেকে ১৮:৩০) চারটি কোর্টেই খেলা হবে।",
           "লেভেল ১ এর শেষ ম্যাচগুলো দ্রুত শেষ করতে ছয়টি দল পরপর দুই রাউন্ডে খেলবে: 1D ও 1I (১৭:৫০), 1C ও 1H (১৮:১০), 1E ও 1J (১৮:৩০)। আর কোনো দল পরপর খেলবে না।",
-          "নামাজের বিরতি ১৫ মিনিট করে: আসর ১৪:০০ – ১৪:১৫, মাগরিব ১৬:১৫ – ১৬:৩০, এশা ১৯:৩০ – ১৯:৪৫। এই সময়ে কোনো খেলা হবে না।",
+          "নামাজের বিরতি ১৫ মিনিট করে: আসর ১৪:০০ – ১৪:১৫, মাগরিব ১৬:১৫ – ১৬:৩০, এশা ১৯:৪০ – ১৯:৫৫। এই সময়ে কোনো খেলা হবে না।",
         ]],
         ["নকআউট পর্ব", [
           "কোয়ার্টার ফাইনাল, সেমিফাইনাল ও ফাইনাল, দুই লেভেলে আলাদাভাবে।",
           "কোয়ার্টার ফাইনালে একই গ্রুপের দল মুখোমুখি হবে না।",
-          "দুই লেভেলের কোয়ার্টার ফাইনাল একসাথে, চারটি কোর্টে: ১৮:৫০ এ প্রতি লেভেলের দুটি এবং ১৯:১০ এ বাকি দুটি করে।",
-          "এরপর এশার নামাজ (১৯:৩০ – ১৯:৪৫), তারপর ১৯:৪৫ এ চারটি সেমিফাইনাল একসাথে। দুই লেভেলের ফাইনাল ২০:২৫ এ।",
+          "দুই লেভেলের কোয়ার্টার ফাইনাল একসাথে, চারটি কোর্টে: ১৯:০০ এ প্রতি লেভেলের দুটি এবং ১৯:২০ এ বাকি দুটি করে। তার আগে ১৮:৫০ – ১৯:০০ লেভেল ১ এর যোগ্য দল নিশ্চিত করা হবে।",
+          "এরপর এশার নামাজ (১৯:৪০ – ১৯:৫৫), তারপর ১৯:৫৫ এ চারটি সেমিফাইনাল একসাথে। দুই লেভেলের ফাইনাল ২০:৩৫ এ।",
         ]],
       ],
       foot: "IGBS e.V. · হামবুর্গ",
@@ -73,7 +74,7 @@
       date: "Date", dateVal: "Sunday, 22 November 2026", time: "Time", timeVal: "14:00 – 22:00", venue: "Venue",
       daysToGo: (n) => (n === 1 ? "1 day to go" : `${n} days to go`), today: "Play starts today at 14:15", inPlay: "Play is under way", finished: "The tournament has finished",
       round: (n) => `Round ${n}`, QF: "Quarterfinals", SF: "Semifinals", F: "Finals",
-      firstUp: "First round", prayer: { asr: "Asr prayer", maghrib: "Maghrib prayer", isha: "Isha prayer" }, noPlay: (a, b) => `Prayer break, ${a} – ${b}. No play on any court.`, now: "Now", court: "Court", freeCourt: "No match on this court", live: "Live",
+      firstUp: "First round", prayer: { asr: "Asr prayer", maghrib: "Maghrib prayer", isha: "Isha prayer", confirm: "Qualifiers confirmed" }, noPlay: (a, b, k) => (k === "confirm" ? `Level 1 groups are over and the quarterfinal line-up is confirmed, ${a} – ${b}. No play on any court.` : `Prayer break, ${a} – ${b}. No play on any court.`), now: "Now", court: "Court", freeCourt: "No match on this court", live: "Live",
       prev: "Earlier slot", next: "Later slot",
       planTitle: "Plan for the day",
       plan: [
@@ -81,11 +82,12 @@
         ["14:15 – 17:50", "Level 2 group stage"],
         ["15:55 – 18:50", "Level 1 group stage, on all four courts near the end"],
         ["16:15 – 16:30", "Maghrib prayer"],
-        ["18:50 – 19:30", "Quarterfinals of both levels together, on four courts"],
-        ["19:30 – 19:45", "Isha prayer"],
-        ["19:45", "All four semifinals together"],
-        ["20:25", "Finals for both levels"],
-        ["20:45", "Trophies and photographs"],
+        ["18:50 – 19:00", "Qualifiers confirmed"],
+        ["19:00 – 19:40", "Quarterfinals of both levels together, on four courts"],
+        ["19:40 – 19:55", "Isha prayer"],
+        ["19:55", "All four semifinals together"],
+        ["20:35", "Finals for both levels"],
+        ["20:55", "Trophies and photographs"],
       ],
       quickFixture: "Find your matches", quickFixtureSub: "Pick your team to see every match, time and court",
       quickGroups: "Groups and standings", quickGroupsSub: "5 groups, 24 teams",
@@ -117,13 +119,13 @@
           "L2-C finishes by 15:55. The remaining L2-A and L2-B matches continue on Courts 3 and 4 until 17:50.",
           "Once Level 2 finishes, the remaining Level 1 matches (17:50 to 18:30) use all four courts.",
           "To finish Level 1 sooner, six teams play two rounds in a row: 1D and 1I (17:50), 1C and 1H (18:10), 1E and 1J (18:30). No other team does.",
-          "Prayer breaks of 15 minutes: Asr 14:00 – 14:15, Maghrib 16:15 – 16:30, Isha 19:30 – 19:45. No play during these.",
+          "Prayer breaks of 15 minutes: Asr 14:00 – 14:15, Maghrib 16:15 – 16:30, Isha 19:40 – 19:55. No play during these.",
         ]],
         ["Knockout stage", [
           "Quarterfinals, semifinals and a final, separately for each level.",
           "Quarterfinals avoid opponents from the same group.",
-          "Quarterfinals of both levels run together on four courts: two per level at 18:50 and the other two per level at 19:10.",
-          "Then Isha (19:30 – 19:45), then all four semifinals together at 19:45. Both finals are at 20:25.",
+          "Quarterfinals of both levels run together on four courts: two per level at 19:00 and the other two per level at 19:20. The Level 1 qualifiers are confirmed from 18:50 to 19:00 first.",
+          "Then Isha (19:40 – 19:55), then all four semifinals together at 19:55. Both finals are at 20:35.",
         ]],
       ],
       foot: "IGBS e.V. · Hamburg",
@@ -310,7 +312,7 @@
           <button class="step" data-step="-1" aria-label="${t.prev}" ${state.slot === 0 ? "disabled" : ""}>${arrow("M15 5l-7 7 7 7")}</button>
           <button class="step" data-step="1" aria-label="${t.next}" ${state.slot === SLOTS.length - 1 ? "disabled" : ""}>${arrow("M9 5l7 7-7 7")}</button>
         </div>
-        ${s.brk ? `<p class="pause">${t.noPlay(s.time, s.end)}</p>` : `<div class="courts">${[1, 2, 3, 4].map((n) => courtView(n, s.matches.find((m) => m.court === n))).join("")}</div>`}
+        ${s.brk ? `<p class="pause">${t.noPlay(s.time, s.end, s.brk)}</p>` : `<div class="courts">${[1, 2, 3, 4].map((n) => courtView(n, s.matches.find((m) => m.court === n))).join("")}</div>`}
       </div></section>
 
       <section class="section">
@@ -336,7 +338,7 @@
       if (s.brk) return `
         <section class="slot-block is-break">
           <div class="slot-head"><span class="t">${s.time}</span><span class="n">${slotName(s)}</span></div>
-          <p class="pause">${t.noPlay(s.time, s.end)}</p>
+          <p class="pause">${t.noPlay(s.time, s.end, s.brk)}</p>
         </section>`;
       let ms = s.matches.filter((m) => state.level === "all" || String(m.level) === state.level);
       if (state.team) ms = ms.filter((m) => m.stage !== "G" || involves(m));
