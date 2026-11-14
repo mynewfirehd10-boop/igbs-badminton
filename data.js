@@ -66,7 +66,9 @@ const TEAMS = {
 /* Group stage: [match id, round, court, group, side A, side B]
    Round times are in ROUND_TIMES. Level 2 starts at 14:15 after Asr on all four courts.
    From 16:00 (round 6) L1-A plays on Court 1 and L1-B on Court 2, and the rest of
-   L2-A and L2-B stay on Courts 3 and 4. No team plays two rounds in a row. */
+   L2-A and L2-B stay on Courts 3 and 4. After Level 2 finishes, Level 1 uses all four courts
+   (rounds 12 and 14). Round 13 (18:30) is a rest slot. Only 1C and 1H play two rounds in a row.
+   Quarterfinals of both levels run together (19:10, 19:30), then all four semifinals at 20:05. */
 const GROUP_MATCHES = [
   ["M01", 1, 1, "L2-C", "2K", "2L"], ["M02", 1, 2, "L2-C", "2M", "2N"], ["M03", 1, 3, "L2-A", "2A", "2B"], ["M04", 1, 4, "L2-B", "2F", "2G"],
   ["M05", 2, 3, "L2-A", "2C", "2D"], ["M06", 2, 4, "L2-B", "2H", "2I"],
@@ -79,26 +81,24 @@ const GROUP_MATCHES = [
   ["M29", 9, 1, "L1-A", "1B", "1C"], ["M30", 9, 2, "L1-B", "1G", "1H"], ["M31", 9, 3, "L2-A", "2A", "2D"], ["M32", 9, 4, "L2-B", "2F", "2I"],
   ["M33", 10, 1, "L1-A", "1D", "1E"], ["M34", 10, 2, "L1-B", "1I", "1J"], ["M35", 10, 3, "L2-A", "2B", "2E"], ["M36", 10, 4, "L2-B", "2G", "2J"],
   ["M37", 11, 1, "L1-A", "1A", "1C"], ["M38", 11, 2, "L1-B", "1F", "1H"],
-  ["M39", 12, 1, "L1-A", "1B", "1D"], ["M40", 12, 2, "L1-B", "1G", "1I"],
-  ["M41", 13, 1, "L1-A", "1C", "1E"], ["M42", 13, 2, "L1-B", "1H", "1J"],
-  ["M43", 14, 1, "L1-A", "1A", "1D"], ["M44", 14, 2, "L1-B", "1F", "1I"],
-  ["M45", 15, 1, "L1-A", "1B", "1E"], ["M46", 15, 2, "L1-B", "1G", "1J"],
+  ["M39", 12, 1, "L1-A", "1B", "1D"], ["M40", 12, 2, "L1-B", "1G", "1I"], ["M41", 12, 3, "L1-A", "1C", "1E"], ["M42", 12, 4, "L1-B", "1H", "1J"],
+  ["M43", 14, 1, "L1-A", "1A", "1D"], ["M44", 14, 2, "L1-B", "1F", "1I"], ["M45", 14, 3, "L1-A", "1B", "1E"], ["M46", 14, 4, "L1-B", "1G", "1J"],
 ];
 
 /* Knockout: side is {g, pos} = position in a group, or {w} = winner of a match */
 const KNOCKOUT = [
-  { id: "2QF1", stage: "QF", level: 2, time: "18:10", court: 3, a: { g: "L2-A", pos: 1 }, b: { g: "L2-B", pos: 3 } },
-  { id: "2QF2", stage: "QF", level: 2, time: "18:10", court: 4, a: { g: "L2-C", pos: 1 }, b: { g: "L2-A", pos: 3 } },
-  { id: "2QF3", stage: "QF", level: 2, time: "18:30", court: 3, a: { g: "L2-B", pos: 1 }, b: { g: "L2-C", pos: 2 } },
-  { id: "2QF4", stage: "QF", level: 2, time: "18:30", court: 4, a: { g: "L2-A", pos: 2 }, b: { g: "L2-B", pos: 2 } },
-  { id: "2SF1", stage: "SF", level: 2, time: "19:10", court: 3, a: { w: "2QF1" }, b: { w: "2QF2" } },
-  { id: "2SF2", stage: "SF", level: 2, time: "19:10", court: 4, a: { w: "2QF3" }, b: { w: "2QF4" } },
-  { id: "1QF1", stage: "QF", level: 1, time: "19:30", court: 1, a: { g: "L1-A", pos: 1 }, b: { g: "L1-B", pos: 4 } },
-  { id: "1QF2", stage: "QF", level: 1, time: "19:30", court: 2, a: { g: "L1-B", pos: 2 }, b: { g: "L1-A", pos: 3 } },
-  { id: "1QF3", stage: "QF", level: 1, time: "19:30", court: 3, a: { g: "L1-B", pos: 1 }, b: { g: "L1-A", pos: 4 } },
-  { id: "1QF4", stage: "QF", level: 1, time: "19:30", court: 4, a: { g: "L1-A", pos: 2 }, b: { g: "L1-B", pos: 3 } },
+  { id: "1QF1", stage: "QF", level: 1, time: "19:10", court: 1, a: { g: "L1-A", pos: 1 }, b: { g: "L1-B", pos: 4 } },
+  { id: "1QF2", stage: "QF", level: 1, time: "19:10", court: 2, a: { g: "L1-B", pos: 2 }, b: { g: "L1-A", pos: 3 } },
+  { id: "2QF1", stage: "QF", level: 2, time: "19:10", court: 3, a: { g: "L2-A", pos: 1 }, b: { g: "L2-B", pos: 3 } },
+  { id: "2QF2", stage: "QF", level: 2, time: "19:10", court: 4, a: { g: "L2-C", pos: 1 }, b: { g: "L2-A", pos: 3 } },
+  { id: "1QF3", stage: "QF", level: 1, time: "19:30", court: 1, a: { g: "L1-B", pos: 1 }, b: { g: "L1-A", pos: 4 } },
+  { id: "1QF4", stage: "QF", level: 1, time: "19:30", court: 2, a: { g: "L1-A", pos: 2 }, b: { g: "L1-B", pos: 3 } },
+  { id: "2QF3", stage: "QF", level: 2, time: "19:30", court: 3, a: { g: "L2-B", pos: 1 }, b: { g: "L2-C", pos: 2 } },
+  { id: "2QF4", stage: "QF", level: 2, time: "19:30", court: 4, a: { g: "L2-A", pos: 2 }, b: { g: "L2-B", pos: 2 } },
   { id: "1SF1", stage: "SF", level: 1, time: "20:05", court: 1, a: { w: "1QF1" }, b: { w: "1QF2" } },
   { id: "1SF2", stage: "SF", level: 1, time: "20:05", court: 2, a: { w: "1QF3" }, b: { w: "1QF4" } },
+  { id: "2SF1", stage: "SF", level: 2, time: "20:05", court: 3, a: { w: "2QF1" }, b: { w: "2QF2" } },
+  { id: "2SF2", stage: "SF", level: 2, time: "20:05", court: 4, a: { w: "2QF3" }, b: { w: "2QF4" } },
   { id: "1F", stage: "F", level: 1, time: "20:45", court: 1, a: { w: "1SF1" }, b: { w: "1SF2" } },
   { id: "2F", stage: "F", level: 2, time: "20:45", court: 3, a: { w: "2SF1" }, b: { w: "2SF2" } },
 ];
