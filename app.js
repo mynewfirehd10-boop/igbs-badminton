@@ -3,14 +3,15 @@
   "use strict";
 
   /* ---------- text in both languages ---------- */
+  const bn = (n) => String(n).replace(/\d/g, (d) => "০১২৩৪৫৬৭৮৯"[d]);
   const TEXT = {
     bn: {
       org: "IGBS e.V. আয়োজিত",
       title: "ব্যাডমিন্টন টুর্নামেন্ট ২০২৬",
       tabHome: "হোম", tabFixture: "ফিক্সচার", tabGroups: "গ্রুপ", tabKnockout: "নকআউট", tabRules: "নিয়ম",
       date: "তারিখ", dateVal: "২২ নভেম্বর ২০২৬, রবিবার", time: "সময়", timeVal: "দুপুর ২টা – রাত ১০টা", venue: "স্থান",
-      daysToGo: (n) => `আর ${n} দিন বাকি`, today: "আজ দুপুর ২:১৫ এ খেলা শুরু", inPlay: "খেলা চলছে", finished: "টুর্নামেন্ট শেষ হয়েছে",
-      round: (n) => `রাউন্ড ${n}`, QF: "কোয়ার্টার ফাইনাল", SF: "সেমিফাইনাল", F: "ফাইনাল",
+      daysToGo: (n) => `আর ${bn(n)} দিন বাকি`, today: "আজ দুপুর ২:১৫ এ খেলা শুরু", inPlay: "খেলা চলছে", finished: "টুর্নামেন্ট শেষ হয়েছে",
+      round: (n) => `রাউন্ড ${bn(n)}`, QF: "কোয়ার্টার ফাইনাল", SF: "সেমিফাইনাল", F: "ফাইনাল",
       firstUp: "প্রথম রাউন্ড", prayer: { asr: "আসরের নামাজ", maghrib: "মাগরিবের নামাজ", isha: "এশার নামাজ", confirm: "যোগ্য দল নিশ্চিত করা" }, noPlay: (a, b, k) => (k === "confirm" ? `লেভেল ১ এর গ্রুপ শেষ, কোয়ার্টার ফাইনালের দল নিশ্চিত করা হচ্ছে, ${a} – ${b}। এই সময়ে কোনো খেলা নেই।` : `নামাজের বিরতি, ${a} – ${b}। এই সময়ে কোনো খেলা নেই।`), now: "এখন", court: "কোর্ট", allCourts: "সব কোর্ট", freeCourt: "এই সময়ে কোর্ট ফাঁকা", live: "লাইভ",
       prev: "আগের সময়", next: "পরের সময়",
       planTitle: "দিনের সূচি",
@@ -30,7 +31,7 @@
       quickGroups: "গ্রুপ ও পয়েন্ট টেবিল", quickGroupsSub: "৫টি গ্রুপ, ২৪টি দল",
       quickRules: "খেলার নিয়ম", quickRulesSub: "১৫ পয়েন্টের এক গেম",
       fixtureTitle: "ফিক্সচার", fixtureSub: "৪৬টি গ্রুপ ম্যাচ ও ১৪টি নকআউট ম্যাচ, চারটি কোর্টে।",
-      all: "সব", level: (n) => `লেভেল ${n}`, myTeam: "আমার দল", allTeams: "সব দল",
+      all: "সব", level: (n) => `লেভেল ${bn(n)}`, myTeam: "আমার দল", allTeams: "সব দল",
       noMatches: "এই বাছাইয়ে কোনো ম্যাচ নেই।",
       groupsTitle: "গ্রুপ ও পয়েন্ট টেবিল", groupsSub: "জয়ের সংখ্যা আগে, সমান হলে পয়েন্টের ব্যবধান। খেলা শেষ হলে টেবিল নিজে থেকেই হালনাগাদ হবে।",
       teams: (n) => `${n}টি দল`, topQ: (n) => `প্রথম ${n}টি দল কোয়ার্টার ফাইনালে`,
@@ -45,6 +46,11 @@
           "জিততে হলে দুই পয়েন্টের ব্যবধান লাগবে। স্কোর ১৪-১৪ হয়ে গেলে যে দল আগে দুই পয়েন্টে এগিয়ে যাবে সেই দল জিতবে (যেমন ১৬-১৪, ১৭-১৫)।",
           "খেলা ২০-২০ পর্যন্ত গেলে আর ব্যবধান লাগবে না। যে দল আগে ২১ পয়েন্ট করবে সেই দল বিজয়ী।",
           "সেমিফাইনাল ও ফাইনাল তিন সেটের (সেরা দুই সেট)। যে দল আগে দুই সেট জিতবে সে বিজয়ী। প্রতিটি সেট ১৫ পয়েন্টের, একই নিয়মে। সময় কম থাকলে এক সেটে খেলা হবে।",
+        ]],
+        ["সার্ভ", [
+          "সার্ভ নেটে লাগলে কোনো রিসার্ভ নেই।",
+          "বল কোর্টের ভেতরে পড়লে রাইট, বাইরে পড়লে আউট।",
+          "সার্ভের বল থার্ড কোর্টের দাগে পড়লে সার্ভ রাইট।",
         ]],
         ["গ্রুপ পর্ব", [
           "২৪টি দল, ৪৮ জন খেলোয়াড়, পাঁচটি গ্রুপ। গ্রুপের ম্যাচ M01 থেকে M46।",
@@ -111,6 +117,11 @@
           "If the set reaches 20-20, the lead is no longer needed: the first team to 21 points wins.",
           "Semifinals and finals are best of three sets: the first team to win two sets wins the match. Each set is to 15 points under the same rules. If time is short, they are played as a single set.",
         ]],
+        ["Serving", [
+          "If the serve hits the net, there is no re-serve.",
+          "A ball that lands inside the court is in; outside is out.",
+          "A serve that lands on the line of the third court is in.",
+        ]],
         ["Group stage", [
           "24 teams, 48 players, five groups. Group matches are M01 to M46.",
           "L1-A and L1-B: 5 teams each, the top 4 reach the quarterfinals.",
@@ -149,6 +160,7 @@
     slot: null,
   };
   const T = () => TEXT[state.lang];
+  const num = (n) => (state.lang === "bn" ? String(n).replace(/\d/g, (d) => "০১২৩৪৫৬৭৮৯"[d]) : String(n));
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
   /* ---------- match list, results and standings come from core.js ---------- */
@@ -208,7 +220,7 @@
     const tag = m.stage === "G" ? m.group : `${T()[m.stage]}, ${T().level(m.level)}`;
     return `
       <article class="${cls.join(" ")}">
-        <div class="ct"><span>${T().court}</span><b>${m.court}</b></div>
+        <div class="ct"><span>${T().court}</span><b>${num(m.court)}</b></div>
         <div class="body">
           <div class="meta"><span>${m.id} ${opts.showTime ? `<span class="when">${m.time}</span>` : ""}</span><span>${r && r.status === "live" ? T().live : tag}</span></div>
           ${row(a, "a")}${row(b, "b")}
@@ -217,7 +229,7 @@
   }
 
   function courtView(no, m) {
-    if (!m) return `<div class="court is-empty"><span class="court-no">${T().court} ${no}</span><p>${T().freeCourt}</p></div>`;
+    if (!m) return `<div class="court is-empty"><span class="court-no">${T().court} ${num(no)}</span><p>${T().freeCourt}</p></div>`;
     const r = result(m.id), win = winnerSide(m.id), a = sideView(m, "a"), b = sideView(m, "b");
     const half = (s, k) => `
       <div class="side ${win === k ? "won" : ""}">
@@ -229,7 +241,7 @@
       : `<span>${m.id}</span><span>${m.stage === "G" ? m.group : T()[m.stage]}</span>`;
     return `
       <div class="court">
-        <span class="court-no">${T().court} ${no}</span>
+        <span class="court-no">${T().court} ${num(no)}</span>
         <i class="tramline l"></i><i class="tramline r"></i>
         ${half(a, "a")}<div class="net">${net}</div>${half(b, "b")}
       </div>`;
@@ -309,7 +321,7 @@
       <div class="page-head"><h1>${t.fixtureTitle}</h1><p>${t.fixtureSub}</p></div>
       <div class="filters">
         <div class="seg" role="group">${seg("all", t.all)}${seg("1", t.level(1))}${seg("2", t.level(2))}</div>
-        <div class="seg" role="group" aria-label="${t.court}">${cseg("all", t.allCourts)}${[1, 2, 3, 4].map((n) => cseg(String(n), `${t.court} ${state.lang === "bn" ? "১২৩৪"[n - 1] : n}`)).join("")}</div>
+        <div class="seg" role="group" aria-label="${t.court}">${cseg("all", t.allCourts)}${[1, 2, 3, 4].map((n) => cseg(String(n), `${t.court} ${num(n)}`)).join("")}</div>
         <label class="pick">${t.myTeam}
           <select id="team-pick"><option value="">${t.allTeams}</option>${teamOpts}</select>
         </label>
