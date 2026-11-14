@@ -17,7 +17,7 @@
       plan: [
         ["14:00 – 14:15", "আসরের নামাজ"],
         ["14:15 – 17:50", "লেভেল ২ গ্রুপ পর্ব"],
-        ["14:15 – 18:50", "লেভেল ১ গ্রুপ পর্ব, শেষ রাউন্ডগুলোতে চারটি কোর্টে"],
+        ["15:55 – 18:50", "লেভেল ১ গ্রুপ পর্ব, শেষ দিকে চারটি কোর্টে"],
         ["16:15 – 16:30", "মাগরিবের নামাজ"],
         ["18:50 – 19:00", "যোগ্য দল নিশ্চিত করা"],
         ["19:00 – 19:40", "কোয়ার্টার ফাইনাল, দুই লেভেল একসাথে, চারটি কোর্টে"],
@@ -41,8 +41,10 @@
       rulesTitle: "নিয়মাবলী",
       rules: [
         ["খেলার ধরন", [
-          "প্রতিটি ম্যাচ এক গেমের, ১৫ পয়েন্টে।",
-          "জিততে হলে দুই পয়েন্টের ব্যবধান লাগবে।",
+          "গ্রুপ পর্ব ও কোয়ার্টার ফাইনালের প্রতিটি ম্যাচ এক সেটের, ১৫ পয়েন্টে।",
+          "জিততে হলে দুই পয়েন্টের ব্যবধান লাগবে। স্কোর ১৪-১৪ হয়ে গেলে যে দল আগে দুই পয়েন্টে এগিয়ে যাবে সেই দল জিতবে (যেমন ১৬-১৪, ১৭-১৫)।",
+          "খেলা ২০-২০ পর্যন্ত গেলে আর ব্যবধান লাগবে না। যে দল আগে ২১ পয়েন্ট করবে সেই দল বিজয়ী।",
+          "সেমিফাইনাল ও ফাইনাল তিন সেটের (সেরা দুই সেট)। যে দল আগে দুই সেট জিতবে সে বিজয়ী। প্রতিটি সেট ১৫ পয়েন্টের, একই নিয়মে। সময় কম থাকলে এক সেটে খেলা হবে।",
         ]],
         ["গ্রুপ পর্ব", [
           "২৪টি দল, ৪৮ জন খেলোয়াড়, পাঁচটি গ্রুপ। গ্রুপের ম্যাচ M01 থেকে M46।",
@@ -80,7 +82,7 @@
       plan: [
         ["14:00 – 14:15", "Asr prayer"],
         ["14:15 – 17:50", "Level 2 group stage"],
-        ["14:15 – 18:50", "Level 1 group stage, on all four courts in the last rounds"],
+        ["15:55 – 18:50", "Level 1 group stage, on all four courts near the end"],
         ["16:15 – 16:30", "Maghrib prayer"],
         ["18:50 – 19:00", "Qualifiers confirmed"],
         ["19:00 – 19:40", "Quarterfinals of both levels together, on four courts"],
@@ -104,8 +106,10 @@
       rulesTitle: "Rules",
       rules: [
         ["Match format", [
-          "Every match is one game to 15 points.",
-          "A two-point lead is needed to win.",
+          "Every group match and quarterfinal is one set to 15 points.",
+          "A two-point lead is needed to win. If the score reaches 14-14, the first team to lead by two points wins (for example 16-14 or 17-15).",
+          "If the set reaches 20-20, the lead is no longer needed: the first team to 21 points wins.",
+          "Semifinals and finals are best of three sets: the first team to win two sets wins the match. Each set is to 15 points under the same rules. If time is short, they are played as a single set.",
         ]],
         ["Group stage", [
           "24 teams, 48 players, five groups. Group matches are M01 to M46.",

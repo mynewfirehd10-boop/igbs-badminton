@@ -67,7 +67,7 @@
       <div class="side-row ${S.known ? "" : "tbd"}">
         <div class="nm">${esc(S.name)}${S.known ? `<small>${S.code}  ${esc(S.players)}</small>` : ""}</div>
         <div class="score-ctl">
-          <input type="number" inputmode="numeric" min="0" max="99" data-k="${k}" aria-label="Points for ${esc(S.name)}" value="${RESULTS_DRAFT[m.id] ? RESULTS_DRAFT[m.id][k] : done ? r[k] : ""}" placeholder="0" ${ready ? "" : "disabled"}>
+          <input type="number" inputmode="numeric" min="0" max="99" data-k="${k}" aria-label="${isSets(m.id) ? "Sets won" : "Points"} for ${esc(S.name)}" value="${RESULTS_DRAFT[m.id] ? RESULTS_DRAFT[m.id][k] : done ? r[k] : ""}" placeholder="0" ${ready ? "" : "disabled"}>
         </div>
       </div>`;
     return `
@@ -75,6 +75,7 @@
         <div class="m-head"><span class="court">Court ${m.court}</span><span class="id">${m.id}  ${esc(tag)}</span>
           <span class="state">${done ? "Saved" : "No result"}</span></div>
         ${row(A, "a")}${row(B, "b")}
+        ${ready && isSets(m.id) ? `<p class="tbd-note">Best of three sets: enter the sets each side won (2–0 or 2–1, or 1–0 if only one set was played).</p>` : ""}
         ${ready ? `<div class="m-actions">
           <button type="button" class="final" data-act="save">${done ? "Update result" : "Save result"}</button>
           <button type="button" class="clear" data-act="clear" ${done ? "" : "disabled"}>Clear</button>
@@ -121,7 +122,12 @@
     showAdmin();
   }
 
-  const validFinal = (a, b) => Math.max(a, b) >= 15 && Math.abs(a - b) >= 2;
+  /* one set: 15 with a 2-point lead from 14-14, capped at 21 */
+  const validSet = (a, b) => { const w = Math.max(a, b), l = Math.min(a, b); return (w === 15 && l <= 13) || (w > 15 && w <= 20 && w - l === 2) || (w === 21 && l >= 19 && l <= 20); };
+  const isSets = (id) => /^(\d)(SF|F)/.test(id);
+  const validFinal = (a, b, id) => isSets(id)
+    ? (a === 2 && b <= 1) || (b === 2 && a <= 1) || (a === 1 && b === 0) || (a === 0 && b === 1)
+    : validSet(a, b);
 
   app.addEventListener("click", async (e) => {
     const nav = e.target.closest("[data-nav]");
@@ -136,9 +142,9 @@
       if (ia.value === "" || ib.value === "") { note(id, "err", "Enter the points for both sides."); showAdmin(); return; }
       const a = Math.max(0, Math.min(99, parseInt(ia.value, 10))), b = Math.max(0, Math.min(99, parseInt(ib.value, 10)));
       if (a === b) { note(id, "err", "A match cannot end level. Check the points."); showAdmin(); return; }
-      if (!validFinal(a, b) && state.confirm[id] !== `${a}:${b}`) {
+      if (!validFinal(a, b, id) && state.confirm[id] !== `${a}:${b}`) {
         state.confirm[id] = `${a}:${b}`;
-        note(id, "err", `${a} : ${b} is not a normal finish (15 points, 2 clear). Tap Save again to keep it anyway.`);
+        note(id, "err", isSets(id) ? `${a} : ${b} is not a normal set score (2–0, 2–1 or 1–0). Tap Save again to keep it anyway.` : `${a} : ${b} is not a normal finish (15 points with 2 clear, or 21 at 20-20). Tap Save again to keep it anyway.`);
         RESULTS_DRAFT[id] = { a, b }; showAdmin(); return;
       }
       delete state.confirm[id]; delete RESULTS_DRAFT[id];
