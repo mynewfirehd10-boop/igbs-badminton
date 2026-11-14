@@ -1,5 +1,5 @@
 /* IGBS Badminton Tournament 2026 — tournament data.
-   Teams and groups: IGBS-Badminton-Groups-and-Fixture-2026.pdf. Timetable: revised 14 Nov (Level 2 from 14:00, Level 1 from 16:00).
+   Teams and groups: IGBS-Badminton-Groups-and-Fixture-2026.pdf. Timetable: revised 14 Nov (Level 2 from 14:00, Level 1 from 15:40).
    Everything the site shows comes from this file.
    Later, RESULTS (and the rest) will be loaded from the live database instead. */
 
@@ -52,7 +52,7 @@ const TEAMS = {
 
 /* Group stage: [match id, round, court, group, side A, side B]
    Round 1 starts at EVENT.start; each round is one 20-minute slot.
-   Level 2 starts at 14:00 on all four courts. From 16:00 (round 7) L1-A plays on
+   Level 2 starts at 14:00 on all four courts. From 15:40 (round 6) L1-A plays on
    Court 1 and L1-B on Court 2, and the rest of L2-A and L2-B stay on Courts 3 and 4.
    No team plays two rounds in a row. */
 const GROUP_MATCHES = [
@@ -61,17 +61,16 @@ const GROUP_MATCHES = [
   ["M07", 3, 1, "L2-C", "2K", "2M"], ["M08", 3, 2, "L2-C", "2L", "2N"], ["M09", 3, 3, "L2-A", "2A", "2E"], ["M10", 3, 4, "L2-B", "2F", "2J"],
   ["M11", 4, 3, "L2-A", "2B", "2C"], ["M12", 4, 4, "L2-B", "2G", "2H"],
   ["M13", 5, 1, "L2-C", "2K", "2N"], ["M14", 5, 2, "L2-C", "2L", "2M"], ["M15", 5, 3, "L2-A", "2D", "2E"], ["M16", 5, 4, "L2-B", "2I", "2J"],
-  ["M17", 6, 3, "L2-A", "2A", "2C"], ["M18", 6, 4, "L2-B", "2F", "2H"],
-  ["M19", 7, 1, "L1-A", "1A", "1B"], ["M20", 7, 2, "L1-B", "1F", "1G"], ["M21", 7, 3, "L2-A", "2B", "2D"], ["M22", 7, 4, "L2-B", "2G", "2I"],
-  ["M23", 8, 1, "L1-A", "1C", "1D"], ["M24", 8, 2, "L1-B", "1H", "1I"], ["M25", 8, 3, "L2-A", "2C", "2E"], ["M26", 8, 4, "L2-B", "2H", "2J"],
-  ["M27", 9, 1, "L1-A", "1A", "1E"], ["M28", 9, 2, "L1-B", "1F", "1J"], ["M29", 9, 3, "L2-A", "2A", "2D"], ["M30", 9, 4, "L2-B", "2F", "2I"],
-  ["M31", 10, 1, "L1-A", "1B", "1C"], ["M32", 10, 2, "L1-B", "1G", "1H"], ["M33", 10, 3, "L2-A", "2B", "2E"], ["M34", 10, 4, "L2-B", "2G", "2J"],
-  ["M35", 11, 1, "L1-A", "1D", "1E"], ["M36", 11, 2, "L1-B", "1I", "1J"],
-  ["M37", 12, 1, "L1-A", "1A", "1C"], ["M38", 12, 2, "L1-B", "1F", "1H"],
-  ["M39", 13, 1, "L1-A", "1B", "1D"], ["M40", 13, 2, "L1-B", "1G", "1I"],
-  ["M41", 14, 1, "L1-A", "1C", "1E"], ["M42", 14, 2, "L1-B", "1H", "1J"],
-  ["M43", 15, 1, "L1-A", "1A", "1D"], ["M44", 15, 2, "L1-B", "1F", "1I"],
-  ["M45", 16, 1, "L1-A", "1B", "1E"], ["M46", 16, 2, "L1-B", "1G", "1J"],
+  ["M17", 6, 1, "L1-A", "1A", "1B"], ["M18", 6, 2, "L1-B", "1F", "1G"], ["M19", 6, 3, "L2-A", "2A", "2C"], ["M20", 6, 4, "L2-B", "2F", "2H"],
+  ["M21", 7, 1, "L1-A", "1C", "1D"], ["M22", 7, 2, "L1-B", "1H", "1I"], ["M23", 7, 3, "L2-A", "2B", "2D"], ["M24", 7, 4, "L2-B", "2G", "2I"],
+  ["M25", 8, 1, "L1-A", "1A", "1E"], ["M26", 8, 2, "L1-B", "1F", "1J"], ["M27", 8, 3, "L2-A", "2C", "2E"], ["M28", 8, 4, "L2-B", "2H", "2J"],
+  ["M29", 9, 1, "L1-A", "1B", "1C"], ["M30", 9, 2, "L1-B", "1G", "1H"], ["M31", 9, 3, "L2-A", "2A", "2D"], ["M32", 9, 4, "L2-B", "2F", "2I"],
+  ["M33", 10, 1, "L1-A", "1D", "1E"], ["M34", 10, 2, "L1-B", "1I", "1J"], ["M35", 10, 3, "L2-A", "2B", "2E"], ["M36", 10, 4, "L2-B", "2G", "2J"],
+  ["M37", 11, 1, "L1-A", "1A", "1C"], ["M38", 11, 2, "L1-B", "1F", "1H"],
+  ["M39", 12, 1, "L1-A", "1B", "1D"], ["M40", 12, 2, "L1-B", "1G", "1I"],
+  ["M41", 13, 1, "L1-A", "1C", "1E"], ["M42", 13, 2, "L1-B", "1H", "1J"],
+  ["M43", 14, 1, "L1-A", "1A", "1D"], ["M44", 14, 2, "L1-B", "1F", "1I"],
+  ["M45", 15, 1, "L1-A", "1B", "1E"], ["M46", 15, 2, "L1-B", "1G", "1J"],
 ];
 
 /* Knockout: side is {g, pos} = position in a group, or {w} = winner of a match */

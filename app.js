@@ -16,7 +16,7 @@
       planTitle: "দিনের সূচি",
       plan: [
         ["14:00 – 17:20", "লেভেল ২ গ্রুপ পর্ব"],
-        ["16:00 – 19:20", "লেভেল ১ গ্রুপ পর্ব, কোর্ট ১ ও ২ এ"],
+        ["15:40 – 19:00", "লেভেল ১ গ্রুপ পর্ব, কোর্ট ১ ও ২ এ"],
         ["17:40 – 19:00", "লেভেল ২ কোয়ার্টার ফাইনাল ও সেমিফাইনাল, কোর্ট ৩ ও ৪ এ"],
         ["19:30", "লেভেল ১ কোয়ার্টার ফাইনাল"],
         ["20:10", "লেভেল ১ সেমিফাইনাল"],
@@ -49,8 +49,8 @@
         ]],
         ["সময় ও কোর্ট", [
           "লেভেল ২ এর গ্রুপ ম্যাচ দুপুর ২টায় শুরু। L2-A কোর্ট ৩ এ, L2-B কোর্ট ৪ এ, আর L2-C কোর্ট ১ ও ২ এ খেলবে।",
-          "লেভেল ১ এর গ্রুপ ম্যাচ বিকেল ৪টায় শুরু। L1-A কোর্ট ১ এ এবং L1-B কোর্ট ২ এ খেলবে।",
-          "L2-C এর সব খেলা ৪টার আগে শেষ হবে। L2-A ও L2-B এর বাকি খেলা কোর্ট ৩ ও ৪ এ চলবে, ১৭:২০ পর্যন্ত।",
+          "লেভেল ১ এর গ্রুপ ম্যাচ ১৫:৪০ এ শুরু। L1-A কোর্ট ১ এ এবং L1-B কোর্ট ২ এ খেলবে।",
+          "L2-C এর সব খেলা ১৫:৪০ এর মধ্যে শেষ হবে। L2-A ও L2-B এর বাকি খেলা কোর্ট ৩ ও ৪ এ চলবে, ১৭:২০ পর্যন্ত।",
           "কোনো দল পরপর দুই রাউন্ডে খেলবে না।",
         ]],
         ["নকআউট পর্ব", [
@@ -74,7 +74,7 @@
       planTitle: "Plan for the day",
       plan: [
         ["14:00 – 17:20", "Level 2 group stage"],
-        ["16:00 – 19:20", "Level 1 group stage on Courts 1 and 2"],
+        ["15:40 – 19:00", "Level 1 group stage on Courts 1 and 2"],
         ["17:40 – 19:00", "Level 2 quarterfinals and semifinals on Courts 3 and 4"],
         ["19:30", "Level 1 quarterfinals"],
         ["20:10", "Level 1 semifinals"],
@@ -107,8 +107,8 @@
         ]],
         ["Times and courts", [
           "Level 2 group matches start at 14:00. L2-A plays on Court 3, L2-B on Court 4, and L2-C on Courts 1 and 2.",
-          "Level 1 group matches start at 16:00. L1-A plays on Court 1 and L1-B on Court 2.",
-          "L2-C finishes before 16:00. The remaining L2-A and L2-B matches continue on Courts 3 and 4 until 17:20.",
+          "Level 1 group matches start at 15:40. L1-A plays on Court 1 and L1-B on Court 2.",
+          "L2-C finishes by 15:40. The remaining L2-A and L2-B matches continue on Courts 3 and 4 until 17:20.",
           "No team plays two rounds in a row.",
         ]],
         ["Knockout stage", [
