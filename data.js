@@ -8,7 +8,8 @@ const EVENT = {
   start: "15:00",
   end: "22:00",
   tz: "+01:00",
-  venue: "Hamburg",
+  venue: "Billwerder Billdeich 607, 21033 Hamburg",
+  mapUrl: "https://www.google.com/maps/search/?api=1&query=Billwerder+Billdeich+607+21033+Hamburg",
   slotMinutes: 20,
 };
 

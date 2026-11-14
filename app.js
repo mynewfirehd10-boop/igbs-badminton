@@ -8,7 +8,7 @@
       org: "IGBS e.V. আয়োজিত",
       title: "ব্যাডমিন্টন টুর্নামেন্ট ২০২৬",
       tabHome: "হোম", tabFixture: "ফিক্সচার", tabGroups: "গ্রুপ", tabKnockout: "নকআউট", tabRules: "নিয়ম",
-      date: "তারিখ", dateVal: "২২ নভেম্বর ২০২৬, রবিবার", time: "সময়", timeVal: "বিকেল ৩টা – রাত ১০টা", venue: "স্থান", venueVal: "হামবুর্গ",
+      date: "তারিখ", dateVal: "২২ নভেম্বর ২০২৬, রবিবার", time: "সময়", timeVal: "বিকেল ৩টা – রাত ১০টা", venue: "স্থান",
       daysToGo: (n) => `আর ${n} দিন বাকি`, today: "আজ বিকেল ৩টায় শুরু", inPlay: "খেলা চলছে", finished: "টুর্নামেন্ট শেষ হয়েছে",
       round: (n) => `রাউন্ড ${n}`, QF: "কোয়ার্টার ফাইনাল", SF: "সেমিফাইনাল", F: "ফাইনাল",
       firstUp: "প্রথম রাউন্ড", now: "এখন", court: "কোর্ট", freeCourt: "এই সময়ে কোর্ট ফাঁকা", live: "লাইভ",
@@ -63,7 +63,7 @@
       org: "Organised by IGBS e.V.",
       title: "Badminton Tournament 2026",
       tabHome: "Home", tabFixture: "Fixture", tabGroups: "Groups", tabKnockout: "Knockout", tabRules: "Rules",
-      date: "Date", dateVal: "Sunday, 22 November 2026", time: "Time", timeVal: "15:00 – 22:00", venue: "Venue", venueVal: "Hamburg",
+      date: "Date", dateVal: "Sunday, 22 November 2026", time: "Time", timeVal: "15:00 – 22:00", venue: "Venue",
       daysToGo: (n) => (n === 1 ? "1 day to go" : `${n} days to go`), today: "Starts today at 15:00", inPlay: "Play is under way", finished: "The tournament has finished",
       round: (n) => `Round ${n}`, QF: "Quarterfinals", SF: "Semifinals", F: "Finals",
       firstUp: "First round", now: "Now", court: "Court", freeCourt: "No match on this court", live: "Live",
@@ -279,7 +279,7 @@
         <dl class="facts">
           <div><dt>${t.date}</dt><dd>${t.dateVal}</dd></div>
           <div><dt>${t.time}</dt><dd>${t.timeVal}</dd></div>
-          <div><dt>${t.venue}</dt><dd>${t.venueVal}</dd></div>
+          <div><dt>${t.venue}</dt><dd><a href="${EVENT.mapUrl}" target="_blank" rel="noopener">${EVENT.venue}</a></dd></div>
         </dl>
         <p class="status ${ph.key === "live" ? "is-live" : ""}"><span class="dot"></span>${statusText}</p>
       </div></section>
