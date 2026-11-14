@@ -1,7 +1,7 @@
 /* IGBS Badminton Tournament 2026 — tournament data.
    Teams and groups: IGBS-Badminton-Groups-and-Fixture-2026.pdf. Timetable: revised 14 Nov (Level 2 from 14:00, Level 1 from 15:55, 15-minute prayer breaks).
    Everything the site shows comes from this file.
-   Later, RESULTS (and the rest) will be loaded from the live database instead. */
+   RESULTS starts empty: live.js fills it from the database while the site is open. */
 
 const EVENT = {
   date: "2026-11-22",

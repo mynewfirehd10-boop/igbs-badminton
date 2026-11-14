@@ -146,62 +146,10 @@
   const T = () => TEXT[state.lang];
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
-  /* ---------- build the match list ---------- */
-  const pad = (n) => String(n).padStart(2, "0");
-  const toMin = (hhmm) => { const [h, m] = hhmm.split(":").map(Number); return h * 60 + m; };
-  const fromMin = (m) => `${pad(Math.floor(m / 60))}:${pad(m % 60)}`;
-  const groupById = Object.fromEntries(GROUPS.map((g) => [g.id, g]));
-
-  const MATCHES = [
-    ...GROUP_MATCHES.map(([id, round, court, group, a, b]) => ({
-      id, stage: "G", round, court, group, level: groupById[group].level,
-      time: ROUND_TIMES[round - 1], a, b,
-    })),
-    ...KNOCKOUT.map((k) => ({ ...k })),
-  ];
-  const matchById = Object.fromEntries(MATCHES.map((m) => [m.id, m]));
-
-  const SLOTS = [];
-  MATCHES.forEach((m) => {
-    let s = SLOTS.find((x) => x.time === m.time);
-    if (!s) { s = { time: m.time, matches: [] }; SLOTS.push(s); }
-    s.matches.push(m);
-    if (m.stage === "G") s.round = m.round;
-  });
-  BREAKS.forEach((b) => SLOTS.push({ time: b.time, end: b.end, brk: b.key, matches: [] }));
-  SLOTS.sort((a, b) => toMin(a.time) - toMin(b.time));
-  const FIRST_PLAY = SLOTS.findIndex((s) => s.matches.length);
+  /* ---------- match list, results and standings come from core.js ---------- */
+  const { toMin, groupById, MATCHES, matchById, SLOTS, FIRST_PLAY, result, winnerSide, standings } = window.IGBS;
+  const resolveSide = (side) => window.IGBS.resolveSide(side, { posOf: T().posOf, winnerOf: T().winnerOf });
   const slotName = (s) => s.brk ? T().prayer[s.brk] : (s.round ? T().round(s.round) : [...new Set(s.matches.map((m) => T()[m.stage]))].join(", "));
-
-  /* ---------- results, standings, knockout sides ---------- */
-  const result = (id) => RESULTS[id] || null;
-  const isDone = (id) => { const r = result(id); return !!r && r.status === "done"; };
-  const winnerSide = (id) => { const r = result(id); return isDone(id) ? (r.a > r.b ? "a" : "b") : null; };
-
-  function standings(group) {
-    const rows = Object.fromEntries(group.teams.map((t) => [t, { team: t, p: 0, w: 0, l: 0, pf: 0, pa: 0 }]));
-    const games = MATCHES.filter((m) => m.group === group.id);
-    games.forEach((m) => {
-      if (!isDone(m.id)) return;
-      const r = result(m.id), A = rows[m.a], B = rows[m.b];
-      A.p++; B.p++; A.pf += r.a; A.pa += r.b; B.pf += r.b; B.pa += r.a;
-      if (r.a > r.b) { A.w++; B.l++; } else { B.w++; A.l++; }
-    });
-    const list = Object.values(rows).sort((x, y) =>
-      y.w - x.w || (y.pf - y.pa) - (x.pf - x.pa) || y.pf - x.pf || x.team.localeCompare(y.team));
-    return { list, complete: games.every((m) => isDone(m.id)) };
-  }
-
-  /* returns { team } when known, otherwise { label } */
-  function resolveSide(side) {
-    if (typeof side === "string") return { team: side };
-    if (side.g) {
-      const st = standings(groupById[side.g]);
-      return st.complete ? { team: st.list[side.pos - 1].team } : { label: T().posOf(side.g, side.pos) };
-    }
-    const src = matchById[side.w], w = winnerSide(side.w);
-    return w ? resolveSide(src[w]) : { label: T().winnerOf(side.w) };
-  }
 
   /* ---------- clock ---------- */
   const at = (hhmm) => new Date(`${EVENT.date}T${hhmm}:00${EVENT.tz}`);
@@ -446,5 +394,6 @@
   });
   window.addEventListener("hashchange", () => { render(); window.scrollTo(0, 0); });
 
+  window.IGBS.onResults(render);
   render();
 })();
