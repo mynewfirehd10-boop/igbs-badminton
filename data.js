@@ -66,6 +66,7 @@ const TEAMS = {
 
 /* Group stage: [match id, round, court, group, side A, side B]
    Round times are in ROUND_TIMES. Level 2 starts at 14:15 after Asr on all four courts.
+   NOTE: court numbers 1-4 here are the hall's courts 3-6 (the site adds 2 when showing them).
    From 16:00 (round 6) L1-A plays on Court 1 and L1-B on Court 2, and the rest of
    L2-A and L2-B stay on Courts 3 and 4. After Level 2 finishes, Level 1 uses all four courts (rounds 11 to 13, 17:50 to 18:30).
    Six teams play two rounds in a row (1D, 1I at 17:50; 1C, 1H at 18:10; 1E, 1J at 18:30).

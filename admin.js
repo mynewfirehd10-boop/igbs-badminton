@@ -72,7 +72,7 @@
       </div>`;
     return `
       <article class="m ${done ? "done" : ""}" data-id="${m.id}">
-        <div class="m-head"><span class="court">Court ${m.court}</span><span class="id">${m.id}  ${esc(tag)}</span>
+        <div class="m-head"><span class="court">Court ${m.court + 2}</span><span class="id">${m.id}  ${esc(tag)}</span>
           <span class="state">${done ? "Saved" : "No result"}</span></div>
         ${row(A, "a")}${row(B, "b")}
         ${ready && isSets(m.id) ? `<p class="tbd-note">Best of three sets: enter the sets each side won (2–0 or 2–1, or 1–0 if only one set was played).</p>` : ""}

@@ -59,9 +59,9 @@
           "অবস্থান ঠিক হবে জয়ের সংখ্যা দিয়ে, এরপর পয়েন্টের ব্যবধান দিয়ে। হিসাব শুধু নিজের গ্রুপের মধ্যে।",
         ]],
         ["সময় ও কোর্ট", [
-          "আসরের নামাজের পর ১৪:১৫ এ লেভেল ২ এর গ্রুপ ম্যাচ শুরু। L2-A কোর্ট ৩ এ, L2-B কোর্ট ৪ এ, আর L2-C কোর্ট ১ ও ২ এ খেলবে।",
-          "লেভেল ১ এর গ্রুপ ম্যাচ ১৫:৫৫ এ শুরু। L1-A কোর্ট ১ এ এবং L1-B কোর্ট ২ এ খেলবে।",
-          "L2-C এর সব খেলা ১৫:৫৫ এর মধ্যে শেষ হবে। L2-A ও L2-B এর বাকি খেলা কোর্ট ৩ ও ৪ এ চলবে, ১৭:৫০ পর্যন্ত।",
+          "আসরের নামাজের পর ১৪:১৫ এ লেভেল ২ এর গ্রুপ ম্যাচ শুরু। L2-A কোর্ট ৫ এ, L2-B কোর্ট ৬ এ, আর L2-C কোর্ট ৩ ও ৪ এ খেলবে।",
+          "লেভেল ১ এর গ্রুপ ম্যাচ ১৫:৫৫ এ শুরু। L1-A কোর্ট ৩ এ এবং L1-B কোর্ট ৪ এ খেলবে।",
+          "L2-C এর সব খেলা ১৫:৫৫ এর মধ্যে শেষ হবে। L2-A ও L2-B এর বাকি খেলা কোর্ট ৫ ও ৬ এ চলবে, ১৭:৫০ পর্যন্ত।",
           "লেভেল ২ শেষ হলে লেভেল ১ এর বাকি ম্যাচগুলো (১৭:৫০ থেকে ১৮:৩০) চারটি কোর্টেই খেলা হবে।",
           "লেভেল ১ এর শেষ ম্যাচগুলো দ্রুত শেষ করতে ছয়টি দল পরপর দুই রাউন্ডে খেলবে: 1D ও 1I (১৭:৫০), 1C ও 1H (১৮:১০), 1E ও 1J (১৮:৩০)। আর কোনো দল পরপর খেলবে না।",
           "নামাজের বিরতি ১৫ মিনিট করে: আসর ১৪:০০ – ১৪:১৫, মাগরিব ১৬:১৫ – ১৬:৩০, এশা ১৯:৪০ – ১৯:৫৫। এই সময়ে কোনো খেলা হবে না।",
@@ -129,9 +129,9 @@
           "Standings go by wins first, then points difference, within the group only.",
         ]],
         ["Times and courts", [
-          "Level 2 group matches start at 14:15, after Asr. L2-A plays on Court 3, L2-B on Court 4, and L2-C on Courts 1 and 2.",
-          "Level 1 group matches start at 15:55. L1-A plays on Court 1 and L1-B on Court 2.",
-          "L2-C finishes by 15:55. The remaining L2-A and L2-B matches continue on Courts 3 and 4 until 17:50.",
+          "Level 2 group matches start at 14:15, after Asr. L2-A plays on Court 5, L2-B on Court 6, and L2-C on Courts 3 and 4.",
+          "Level 1 group matches start at 15:55. L1-A plays on Court 3 and L1-B on Court 4.",
+          "L2-C finishes by 15:55. The remaining L2-A and L2-B matches continue on Courts 5 and 6 until 17:50.",
           "Once Level 2 finishes, the remaining Level 1 matches (17:50 to 18:30) use all four courts.",
           "To finish Level 1 sooner, six teams play two rounds in a row: 1D and 1I (17:50), 1C and 1H (18:10), 1E and 1J (18:30). No other team does.",
           "Prayer breaks of 15 minutes: Asr 14:00 – 14:15, Maghrib 16:15 – 16:30, Isha 19:40 – 19:55. No play during these.",
@@ -220,7 +220,7 @@
     const tag = m.stage === "G" ? m.group : `${T()[m.stage]}, ${T().level(m.level)}`;
     return `
       <article class="${cls.join(" ")}">
-        <div class="ct"><span>${T().court}</span><b>${num(m.court)}</b></div>
+        <div class="ct"><span>${T().court}</span><b>${num(m.court + 2)}</b></div>
         <div class="body">
           <div class="meta"><span>${m.id} ${opts.showTime ? `<span class="when">${m.time}</span>` : ""}</span><span>${r && r.status === "live" ? T().live : tag}</span></div>
           ${row(a, "a")}${row(b, "b")}
@@ -229,7 +229,7 @@
   }
 
   function courtView(no, m) {
-    if (!m) return `<div class="court is-empty"><span class="court-no">${T().court} ${num(no)}</span><p>${T().freeCourt}</p></div>`;
+    if (!m) return `<div class="court is-empty"><span class="court-no">${T().court} ${num(no + 2)}</span><p>${T().freeCourt}</p></div>`;
     const r = result(m.id), win = winnerSide(m.id), a = sideView(m, "a"), b = sideView(m, "b");
     const half = (s, k) => `
       <div class="side ${win === k ? "won" : ""}">
@@ -241,7 +241,7 @@
       : `<span>${m.id}</span><span>${m.stage === "G" ? m.group : T()[m.stage]}</span>`;
     return `
       <div class="court">
-        <span class="court-no">${T().court} ${num(no)}</span>
+        <span class="court-no">${T().court} ${num(no + 2)}</span>
         <i class="tramline l"></i><i class="tramline r"></i>
         ${half(a, "a")}<div class="net">${net}</div>${half(b, "b")}
       </div>`;
@@ -321,7 +321,7 @@
       <div class="page-head"><h1>${t.fixtureTitle}</h1><p>${t.fixtureSub}</p></div>
       <div class="filters">
         <div class="seg" role="group">${seg("all", t.all)}${seg("1", t.level(1))}${seg("2", t.level(2))}</div>
-        <div class="seg" role="group" aria-label="${t.court}">${cseg("all", t.allCourts)}${[1, 2, 3, 4].map((n) => cseg(String(n), `${t.court} ${num(n)}`)).join("")}</div>
+        <div class="seg" role="group" aria-label="${t.court}">${cseg("all", t.allCourts)}${[1, 2, 3, 4].map((n) => cseg(String(n), `${t.court} ${num(n + 2)}`)).join("")}</div>
         <label class="pick">${t.myTeam}
           <select id="team-pick"><option value="">${t.allTeams}</option>${teamOpts}</select>
         </label>
