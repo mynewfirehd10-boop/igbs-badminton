@@ -14,7 +14,7 @@
   const isKO = (m) => m.stage !== "G";
   const ALL = api.MATCHES.slice().sort((a, b) => api.toMin(a.time) - api.toMin(b.time) || a.court - b.court);
   const TIMES = [...new Set(ALL.map((m) => m.time))];
-  const DEFAULTS = { q: "", stage: "all", level: "all", court: "all", time: "all", status: "ready" };
+  const DEFAULTS = { q: "", stage: "all", level: "all", court: "all", time: "all", status: "pending" };
   const state = { user: null, ...DEFAULTS, open: null, kept: null, mode: {}, draft: {}, notes: {}, confirm: {} };
 
   const side = (m, k) => {
@@ -99,7 +99,7 @@
         <details class="fil" ${Object.keys(DEFAULTS).some((k) => k !== "q" && state[k] !== DEFAULTS[k]) ? "open" : ""}>
         <summary>Filters</summary>
         <div class="filters">
-          <label>Status<select data-f="status">${opts([["ready", "Ready to enter"], ["pending", "Not saved yet"], ["saved", "Saved"], ["all", "All"]], state.status)}</select></label>
+          <label>Status<select data-f="status">${opts([["pending", "Not saved yet"], ["ready", "Ready to enter"], ["saved", "Saved"], ["all", "All"]], state.status)}</select></label>
           <label>Stage<select data-f="stage">${opts([["all", "All stages"], ["G", "Group"], ["QF", "Quarterfinal"], ["SF", "Semifinal"], ["F", "Final"]], state.stage)}</select></label>
           <label>Level<select data-f="level">${opts([["all", "Both levels"], ["1", "Level 1"], ["2", "Level 2"]], state.level)}</select></label>
           <label>Court<select data-f="court">${opts([["all", "All courts"], ["1", "Court 3"], ["2", "Court 4"], ["3", "Court 5"], ["4", "Court 6"]], state.court)}</select></label>
