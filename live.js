@@ -6,12 +6,20 @@
   api.configured = !!(cfg.supabaseUrl && cfg.supabaseAnonKey);
   api.connection = api.configured ? "connecting" : "off";
 
+  /* rows named "1SF1#2" are set scores (set 2 of match 1SF1); the plain id holds the match result */
   function apply(rows) {
-    const next = {};
-    rows.forEach((r) => { next[r.match_id] = { a: r.a, b: r.b, status: r.status }; });
-    if (JSON.stringify(next) === JSON.stringify(RESULTS)) return;
+    const next = {}, sets = {};
+    rows.forEach((r) => {
+      const [id, n] = r.match_id.split("#");
+      if (n) (sets[id] = sets[id] || [])[Number(n) - 1] = [r.a, r.b];
+      else next[id] = { a: r.a, b: r.b, status: r.status };
+    });
+    Object.keys(sets).forEach((k) => { sets[k] = sets[k].filter(Boolean); });
+    if (JSON.stringify(next) === JSON.stringify(RESULTS) && JSON.stringify(sets) === JSON.stringify(api.SETS)) return;
     Object.keys(RESULTS).forEach((k) => delete RESULTS[k]);
     Object.assign(RESULTS, next);
+    Object.keys(api.SETS).forEach((k) => delete api.SETS[k]);
+    Object.assign(api.SETS, sets);
     api.emit();
   }
 

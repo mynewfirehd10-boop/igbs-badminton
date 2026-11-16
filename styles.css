@@ -315,3 +315,7 @@ td.w { font-family: var(--display); font-weight: 700; font-size: 1.08rem; font-v
   .pick { flex-wrap: wrap; width: 100%; }
   .pick select { flex: 1; min-width: 0; }
 }
+
+/* set scores of knockout matches */
+.match .sets { margin-top: 6px; font-size: .85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.court .net .setline { display: block; font-size: .7rem; color: var(--muted); margin-top: 2px; white-space: nowrap; }

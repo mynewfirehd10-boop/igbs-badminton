@@ -65,6 +65,7 @@
   window.IGBS = {
     toMin, fromMin, groupById, MATCHES, matchById, SLOTS, FIRST_PLAY,
     result, isLive, isDone, winnerSide, standings, resolveSide,
+    SETS: {},                                   /* knockout set scores: { id: [[a,b], ...] } */
     onResults: (fn) => listeners.push(fn),
     emit: () => listeners.forEach((fn) => fn()),
     client: null,

@@ -165,6 +165,8 @@
 
   /* ---------- match list, results and standings come from core.js ---------- */
   const { toMin, groupById, MATCHES, matchById, SLOTS, FIRST_PLAY, result, winnerSide, standings } = window.IGBS;
+  const SETS = window.IGBS.SETS;
+  const setLine = (id) => (SETS[id] || []).map((x) => `${x[0]}\u2013${x[1]}`).join(", ");
   const resolveSide = (side) => window.IGBS.resolveSide(side, { posOf: T().posOf, winnerOf: T().winnerOf });
   const slotName = (s) => s.brk ? T().prayer[s.brk] : (s.round ? T().round(s.round) : [...new Set(s.matches.map((m) => T()[m.stage]))].join(", "));
 
@@ -224,6 +226,7 @@
         <div class="body">
           <div class="meta"><span>${m.id} ${opts.showTime ? `<span class="when">${m.time}</span>` : ""}</span><span>${r && r.status === "live" ? T().live : tag}</span></div>
           ${row(a, "a")}${row(b, "b")}
+          ${setLine(m.id) ? `<div class="sets">${setLine(m.id)}</div>` : ""}
         </div>
       </article>`;
   }
@@ -237,7 +240,7 @@
         ${s.code ? `<span class="code">${s.code}</span>` : ""}
       </div>`;
     const net = r
-      ? `<span class="score">${r.a}</span>${r.status === "live" ? `<span class="live">${T().live}</span>` : "<span>:</span>"}<span class="score">${r.b}</span>`
+      ? `<span class="score">${r.a}</span>${r.status === "live" ? `<span class="live">${T().live}</span>` : "<span>:</span>"}<span class="score">${r.b}</span>${setLine(m.id) ? `<small class="setline">${setLine(m.id)}</small>` : ""}`
       : `<span>${m.id}</span><span>${m.stage === "G" ? m.group : T()[m.stage]}</span>`;
     return `
       <div class="court">
