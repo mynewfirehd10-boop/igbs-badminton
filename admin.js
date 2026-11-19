@@ -129,7 +129,10 @@
     const rows = mode === "single" ? 1 : 3;
     const d = state.draft[m.id];
     const val = (i, k) => (d && d[i] ? d[i][k] : saved[i] ? String(saved[i][k]) : "");
-    const head = (S) => `<span class="tn">${esc(S.name)}${S.known && S.players ? `<small>${esc(S.code)}  ${esc(S.players)}</small>` : ""}</span>`;
+    const head = (S) => `<span class="tn">${esc(S.name)}</span>`;
+    const off = (typeof OFFICIALS !== "undefined" && OFFICIALS[m.id]) || null;
+    const vols = off ? [["Referee", off.ref], ["Line", off.line[0]], ["Line", off.line[1]]].filter((x) => x[1]) : [];
+    const volLine = vols.length ? `<p class="vols">${vols.map((x) => `<span><b>${x[0]}:</b> ${esc(x[1])}</span>`).join("")}</p>` : "";
     let body = "";
     for (let i = 0; i < rows; i++) {
       const label = ko ? (mode === "best3" && i === 2 ? "Set 3 (if 1–1)" : `Set ${i + 1}`) : "Points";
@@ -142,6 +145,7 @@
         <button type="button" data-act="mode" data-mode="single" aria-pressed="${mode === "single"}">One set</button>
         <button type="button" data-act="mode" data-mode="best3" aria-pressed="${mode === "best3"}">Best of 3 sets</button></div>` : ""}
       <div class="sc-table"><div class="sc-head"><span></span>${head(A)}${head(B)}</div>${body}</div>
+      ${volLine}
       <div class="m-actions">
         <button type="button" class="final" data-act="save">${r ? "Update result" : "Save result"}</button>
         <button type="button" class="clear" data-act="clear" ${r ? "" : "disabled"}>Clear</button>

@@ -112,7 +112,8 @@ body.admin { padding-bottom: 32px; }
 .sc-table { display: grid; gap: 8px; }
 .sc-head, .set-row { display: grid; grid-template-columns: 64px 1fr 1fr; gap: 8px; align-items: center; }
 .sc-head .tn { font-weight: 600; font-size: .95rem; line-height: 1.2; overflow-wrap: anywhere; }
-.sc-head .tn small { display: block; font-weight: 400; color: var(--brass); font-size: .72rem; }
+.vols { display: flex; flex-wrap: wrap; gap: 4px 14px; margin: 8px 0 0; font-size: .85rem; color: var(--brass); }
+.vols b { font-weight: 600; }
 .set-row .sl { font-size: .8rem; color: var(--muted); line-height: 1.2; }
 .set-row input {
   width: 100%; min-width: 0; height: 56px; text-align: center; font: 700 1.7rem var(--display); color: var(--ivory);
